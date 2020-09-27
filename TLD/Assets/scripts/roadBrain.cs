@@ -1,12 +1,10 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class onCreate : MonoBehaviour
+public class roadBrain : MonoBehaviour
 {
     constraint constraints;
-   // [SerializeField] int amountOfCars;
     static int serialnumber=0;
     [SerializeField] float secondsPerCar=9999;
     [SerializeField] GameObject startRoad=null;
@@ -28,8 +26,6 @@ public class onCreate : MonoBehaviour
         }
         list.Add(endRoad.transform.position);
        
-     //   car.GetComponent<drive>().gps = list;
-   //     car.GetComponent<drive>().maxpoints=mid+2;
     }
 
     // Update is called once per frame
