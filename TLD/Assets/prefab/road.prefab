@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ed6f6b269c9a041a7b4273a6860d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framesPerCar: 0
+  secondsPerCar: 9999
   startRoad: {fileID: 717049766}
   middleRoad: {fileID: 0}
   endRoad: {fileID: 585022646}

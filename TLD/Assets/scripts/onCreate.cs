@@ -8,12 +8,12 @@ public class onCreate : MonoBehaviour
     constraint constraints;
    // [SerializeField] int amountOfCars;
     static int serialnumber=0;
-    [SerializeField] float framesPerCar=9999;
+    [SerializeField] float secondsPerCar=9999;
     [SerializeField] GameObject startRoad=null;
     [SerializeField] GameObject middleRoad=null;
     [SerializeField] GameObject endRoad=null;
     [SerializeField] GameObject car=null;
-    int frameNumber = 0;
+    float secondNumber = 0;
     List<Vector3> list;
     int mid = 0;
     // Start is called before the first frame update
@@ -35,8 +35,8 @@ public class onCreate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        frameNumber++;
-        if (frameNumber >= framesPerCar)
+        secondNumber+=Time.deltaTime;
+        if ((int)secondNumber >= secondsPerCar)
         {
             createCars();
         }
@@ -59,7 +59,7 @@ public class onCreate : MonoBehaviour
     /// </summary>
     private void createCars()
     {
-        frameNumber = 0;
+        secondNumber = 0;
         GameObject newCar = Instantiate(car, list[0], car.transform.rotation);
         newCar.GetComponent<drive>().gps = list;
         newCar.GetComponent<drive>().maxpoints = mid + 2;
