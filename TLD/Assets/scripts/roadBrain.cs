@@ -14,7 +14,7 @@ public class roadBrain : MonoBehaviour
     float secondNumber = 0;
     List<Vector3> list;
     int mid = 0;
-    [SerializeField] GameObject trafficLight = null;
+   // [SerializeField] GameObject trafficLight = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +49,7 @@ public class roadBrain : MonoBehaviour
     {
         if (collision.transform.tag == "road") { 
             constraints.addcons(gameObject.name + "," + collision.gameObject.name);
-
+/*
             //place of the new traffic light
             Vector3 TL = collision.GetContact(0).point + collision.GetContact(1).point;
             TL /= 2;
@@ -60,7 +60,7 @@ public class roadBrain : MonoBehaviour
             Instantiate(trafficLight, TL, trafficLight.transform.rotation);
 
             //add the traffic light to the list
-
+            */
         }
     }
         
