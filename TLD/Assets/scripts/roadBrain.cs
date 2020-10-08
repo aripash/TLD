@@ -78,6 +78,7 @@ public class roadBrain : MonoBehaviour
     }
     public void newCPM(string cpm)
     {
-        secondsPerCar = int.Parse(cpm);
+        int cpmt = int.Parse(cpm);
+        secondsPerCar = 60 / cpmt;
     }
 }
