@@ -12,21 +12,21 @@ namespace TLD
     /// </summary>
     class Junction
     {
-        int[] _order;
+        bool[,] _order;
         int[] _density;
         static int CYCLE_SIZE = 4; //max cycle size
         private static Constraints cons;
 
         public Junction(int how_many_lanes, int[] _den)
         {
-            _order = new int[how_many_lanes];
+            _order = new bool[how_many_lanes, CYCLE_SIZE];
             _density = _den;
             cons = new Constraints(how_many_lanes);
         }
 
         public Junction(Junction original)
         {
-            this._order = (int[])original._order.Clone();
+            this._order = (bool[,])original._order.Clone();
             this._density = (int[])original._density.Clone();
 
         }
@@ -39,13 +39,72 @@ namespace TLD
         public int Eval()
         {
             int result = 0;
-            for (int i = 0; i < _order.Length; i++)
-                for (int j = i + 1; j < _order.Length; j++)
+            /** Negative check: go through every row -> find #t in row -> check for other #t in same row for constraints
+             * each constraint -1 Utilily **/
+            for (int i = 0; i < _order.GetLength(0); i++)
+            {
+                for (int j = 0; j < _order.GetLength(1); j++)
                 {
-                    if (_order[i] == _order[j])
-                        if (cons.Check_cons(i, j))
-                            result--;
+                    if (_order[i, j])
+                    {
+                        for (int k = j + 1; k < _order.GetLength(1); k++)
+                        {
+                            if (_order[i, k])
+                            {
+                                if (cons.Check_cons(k, j))
+                                    result--;
+                            }
+                        }
+                    }
                 }
+            }
+            /* High number of lanes diversity */
+            if (result >= 0)
+            {
+                for (int i = 0; i < _order.GetLength(0); i++)
+                {
+                    for (int j = 0; j < _order.GetLength(1); j++)
+                    {
+                        if (_order[i, j] == true)
+                        {
+                            result++;
+                            j = _order.GetLength(1);
+                        }
+                    }
+                }
+
+                /* High number of lanes active at same time */
+                int tempCounter = 0;
+                if (result >= _order.GetLength(0) - 1)
+                {
+                    for (int i = 0; i < _order.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < _order.GetLength(1); j++)
+                        {
+                            if (_order[j, i] == true)
+                            {
+                                tempCounter++;
+                            }
+                        }
+                        result += (tempCounter * tempCounter);
+                    }
+
+                    /* High load release? */
+                    int tempCounterDensity = 0;
+                    for (int i = 0; i < _order.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < _order.GetLength(1); j++)
+                        {
+                            if (_order[i, j] == true)
+                            {
+                                tempCounterDensity += _density[i];
+                            }
+                        }
+                        result += tempCounterDensity * tempCounterDensity;
+                    }
+                }
+            }
+
             return result;
         }
 
@@ -57,12 +116,13 @@ namespace TLD
         {
             Random rand = new Random();
             Junction temp = new Junction(this);
-            int tempRand = rand.Next(_order.Length);
-            temp._order[tempRand] = rand.Next(CYCLE_SIZE);
+            int tempRandRow = rand.Next(_order.GetLength(0));
+            int tempRandCol = rand.Next(_order.GetLength(1));
+            temp._order[tempRandRow, tempRandCol] = !temp._order[tempRandRow, tempRandCol];
             return temp;
         }
 
-        public int[] getOrder()
+        public bool[,] getOrder()
         {
             return _order;
         }
@@ -70,7 +130,7 @@ namespace TLD
         public override string ToString()
         {
             string res = "";
-            res += "ORDER:   " + tools.DeepToString(_order) + "DENSITY:   " + tools.DeepToString(_density) + "EVAL:   " + Eval();
+            res += "ORDER:   \n" + tools.DeepToString(ref _order) + "DENSITY:   " + tools.DeepToString(ref _density) + "EVAL:   " + Eval();
             return res; ;
         }
     }

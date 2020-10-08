@@ -6,7 +6,7 @@ namespace TLD
 {
     class tools
     {
-        public static string DeepToString(int[] arr)
+        public static string DeepToString<T>(ref T[] arr)
         {
             string res = "";
             for (int i = 0; i < arr.Length; i++)
@@ -14,6 +14,17 @@ namespace TLD
                 res+=" " + arr[i];
             }
             return res+"\n";
+        }
+        public static string DeepToString<T>(ref T[,] arr)
+        {
+            string res = "";
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                    res += " " + arr[i,j];
+                res += "\n";
+            }
+            return res;
         }
     }
 }
