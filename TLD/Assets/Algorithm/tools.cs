@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-    class tools : MonoBehaviour
+    class tools
     {
         public static string DeepToString<T>(ref T[] arr)
         {

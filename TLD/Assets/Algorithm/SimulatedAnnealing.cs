@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-    class SimulatedAnnealing : MonoBehaviour
+    class SimulatedAnnealing
     {
         /// <summary>
         /// 
