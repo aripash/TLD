@@ -1779,7 +1779,7 @@ GameObject:
   - component: {fileID: 7905183012685046192}
   - component: {fileID: 7890089841244912969}
   - component: {fileID: 1555240599144895724}
-  - component: {fileID: 8513109835336449928}
+  - component: {fileID: 6726364380324149605}
   m_Layer: 8
   m_Name: car
   m_TagString: car
@@ -1833,7 +1833,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4016406214073140636}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -1841,7 +1841,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!65 &8513109835336449928
+--- !u!65 &6726364380324149605
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1852,8 +1852,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10823822, y: 0.1089592, z: 0.24648514}
-  m_Center: {x: -0.2628708, y: 0.29097903, z: 0.10626699}
+  m_Size: {x: 0.09244317, y: 0.10573673, z: 0.25213096}
+  m_Center: {x: 0.05813822, y: 0.047099113, z: -0.07530977}
 --- !u!1 &4381984809497360836
 GameObject:
   m_ObjectHideFlags: 0
