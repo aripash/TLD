@@ -1,6 +1,8 @@
 ﻿
+using Packages.Rider.Editor.Util;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class roadBrain : MonoBehaviour
 {
@@ -15,8 +17,16 @@ public class roadBrain : MonoBehaviour
     List<Vector3> list;
     int mid = 0;
     public bool stop = false;
+    [SerializeField] InputField inpf = null;//original
+    private InputField iF;//copy for a specific road
+
     void Start()
     {
+        iF = Instantiate(inpf);
+        iF.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+        iF.onValueChanged.AddListener(delegate { newCPM(iF.text); });
+        iF.placeholder.GetComponent<Text>().text +=""+ serialnumber;
+        iF.transform.position = new Vector3(125, 500 - 25 * serialnumber, 0);
         gameObject.name = ""+serialnumber++;
         constraints = GameObject.Find("constraints").GetComponent<constraint>();
         list = new List<Vector3>();
@@ -66,5 +76,8 @@ public class roadBrain : MonoBehaviour
         newCar.GetComponent<drive>().firstSpeed();
         newCar.GetComponent<drive>().currentpoint = 1;
     }
-
+    public void newCPM(string cpm)
+    {
+        secondsPerCar = int.Parse(cpm);
+    }
 }

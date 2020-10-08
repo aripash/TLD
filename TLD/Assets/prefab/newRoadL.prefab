@@ -112,6 +112,8 @@ MonoBehaviour:
   middleRoad: {fileID: 0}
   endRoad: {fileID: 5568725538104670528}
   car: {fileID: 4016406214073140636, guid: 1609f8f513c9d0f48adfb753de3bf5b5, type: 3}
+  stop: 0
+  inpf: {fileID: 6894883273506060909, guid: aa30745964878d243b13469e351923bc, type: 3}
 --- !u!65 &1916853714495598581
 BoxCollider:
   m_ObjectHideFlags: 0
