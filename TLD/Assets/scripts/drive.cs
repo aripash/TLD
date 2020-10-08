@@ -12,7 +12,7 @@ public class drive : MonoBehaviour
     Rigidbody rb;
     [SerializeField]float safeDistance = 1;
     private static int serial=0;
-
+    public GameObject parent;
 
     // Update is called once per frame
     void Update()
@@ -26,12 +26,20 @@ public class drive : MonoBehaviour
             //cast a ray from raycastpos in the direction of movement at a safeDistance distance only on objects from the 8th layer and save to hit
             if (Physics.Raycast(raycastpos, dir, out hit, safeDistance))
             {
-                if (hit.collider.tag == "car") { rb.velocity = Vector3.zero; }
+                if (hit.collider.tag == "car") {
+                    rb.velocity = Vector3.zero;
+                    Vector3 currentPos = gameObject.transform.position;
+                    if (Mathf.Abs(gps[currentpoint-1].x - currentPos.x) < 0.1f && Mathf.Abs(gps[currentpoint-1].z - currentPos.z) < 0.1f)
+                    {
+                        parent.GetComponent<roadBrain>().stop = true;
+                    }
+                }
             }
             else
             {
                 rb.velocity = dir * speed;
                 transform.LookAt(gps[currentpoint]);
+                parent.GetComponent<roadBrain>().stop = false;
             }
 
             Vector3 currentGPS = gameObject.transform.position;

@@ -1824,7 +1824,7 @@ MonoBehaviour:
   - {x: -6.0664463, y: 0.22, z: 3.457}
   currentpoint: 1
   maxpoints: 2
-  safeDistance: 1
+  safeDistance: 0.25
 --- !u!54 &1555240599144895724
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1852,8 +1852,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09244317, y: 0.10573673, z: 0.25213096}
-  m_Center: {x: 0.05813822, y: 0.047099113, z: -0.07530977}
+  m_Size: {x: 0.121724464, y: 0.12435818, z: 0.25213096}
+  m_Center: {x: 0.04774155, y: 0.056409836, z: -0.07530977}
 --- !u!1 &4381984809497360836
 GameObject:
   m_ObjectHideFlags: 0
