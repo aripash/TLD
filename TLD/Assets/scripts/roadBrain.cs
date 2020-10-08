@@ -19,6 +19,7 @@ public class roadBrain : MonoBehaviour
     public bool stop = false;
     [SerializeField] InputField inpf = null;//original
     private InputField iF;//copy for a specific road
+    [SerializeField] GameObject algo = null;
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class roadBrain : MonoBehaviour
             mid = 1;
         }
         list.Add(endRoad.transform.position);
-       
+        algo.GetComponent<part2>().addRoad(secondsPerCar);
     }
 
     // Update is called once per frame
