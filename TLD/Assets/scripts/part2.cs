@@ -31,10 +31,25 @@ public class part2 : MonoBehaviour
         }
 
     }
-    public void addRoad(float cpm) 
+
+    /// <summary>
+    /// Adds new or changes road's density
+    /// </summary>
+    /// <param name="name"> Road name </param>
+    /// <param name="cpm"> Road's density (cars per minute) </param>
+    public void addRoad(int name, float cpm) 
     {
+
         numOfRoads++;
-        density.Add(cpm);
+        if (density.Count > name)
+        {
+            density.Insert(name, cpm);
+        }
+        else
+        {
+            density.Capacity = name + 1;
+            density.Insert(name, cpm);
+        }
     }
 
     /// <summary>
@@ -54,6 +69,6 @@ public class part2 : MonoBehaviour
         }
         Junction _jn = new Junction(_nor, _density.ToArray());
         Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.00001f,50);
-        part3.GetComponent<part4>().lights(_result.getOrder());//send schedule instead
+        part3.GetComponent<part4>().lights(_result);//send schedule instead
     }
 }

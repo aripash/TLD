@@ -9,12 +9,12 @@ using UnityEngine;
 /// Order represents which order lanes get green in traffic light cycle
 /// Density represents how dense each lane for Utility evaluation
 /// </summary>
-class Junction
+public class Junction
 {
     bool[,] _order;
     int[] _density;
     static int CYCLE_SIZE = 4; //max cycle size
-    public static Constraints cons;
+    static Constraints cons;
 
     public Junction(int how_many_lanes, int[] _den)
     {
@@ -124,6 +124,11 @@ class Junction
     public bool[,] getOrder()
     {
         return _order;
+    }
+
+    public int[] getDensity()
+    {
+        return _density;
     }
 
     public override string ToString()

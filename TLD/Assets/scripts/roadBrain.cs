@@ -36,7 +36,7 @@ public class roadBrain : MonoBehaviour
             mid = 1;
         }
         list.Add(endRoad.transform.position);
-        algo.GetComponent<part2>().addRoad(secondsPerCar);
+        algo.GetComponent<part2>().addRoad(int.Parse(gameObject.name), secondsPerCar);
     }
 
     // Update is called once per frame
@@ -77,9 +77,14 @@ public class roadBrain : MonoBehaviour
         newCar.GetComponent<drive>().firstSpeed();
         newCar.GetComponent<drive>().currentpoint = 1;
     }
+    /// <summary>
+    /// Updates new density
+    /// </summary>
+    /// <param name="cpm"> cars per minute </param>
     public void newCPM(string cpm)
     {
         int cpmt = int.Parse(cpm);
         secondsPerCar = 60 / cpmt;
+        algo.GetComponent<part2>().addRoad(int.Parse(gameObject.name), secondsPerCar);
     }
 }
