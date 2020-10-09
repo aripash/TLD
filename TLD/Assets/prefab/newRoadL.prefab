@@ -114,6 +114,7 @@ MonoBehaviour:
   car: {fileID: 4016406214073140636, guid: 1609f8f513c9d0f48adfb753de3bf5b5, type: 3}
   stop: 0
   inpf: {fileID: 6894883273506060909, guid: aa30745964878d243b13469e351923bc, type: 3}
+  algo: {fileID: 8944934877445974025, guid: 709b1ae218b48b64589d6f4b31472c15, type: 3}
 --- !u!65 &1916853714495598581
 BoxCollider:
   m_ObjectHideFlags: 0

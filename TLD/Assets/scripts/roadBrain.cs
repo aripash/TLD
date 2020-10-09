@@ -20,7 +20,7 @@ public class roadBrain : MonoBehaviour
     [SerializeField] InputField inpf = null;//original
     private InputField iF;//copy for a specific road
     [SerializeField] GameObject algo = null;
-
+    
     void Start()
     {
         iF = Instantiate(inpf);

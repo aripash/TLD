@@ -10,7 +10,7 @@ class Constraints
     //Neighbours Matrix for Constraints
     static bool[,] cons_mat;
     private static int LENGTH;
-    private static int testCount = 0;
+//    private static int testCount = 0;
 
     public Constraints(int size)
     {

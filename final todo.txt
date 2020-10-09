@@ -1,0 +1,45 @@
+unity to do:
+try to draw lanes, traffic light for that lane and traffic density.[x](we use premade maps)
+
+build set amount of junctions and let the user pick densities.[]
+
+to draw a lane you "click" a starting point and an end point and the program will draw a line with direction,
+then it will update the constraint list.[x](we use premade maps)
+
+add user parameters.[v]
+
+after drawing a lane the program needs to add a traffic light automaticly.[x](we use premade maps)
+
+draw on the lane if its open.[x]
+
+constraint: 
+road has at least 1 lane, each lane has 1 traffic light, each traffic light has at least 1 lane.[v]
+
+if 2 lanes intersect, both trafficlights cant be open(pairs of lanes that cant be opened together).[v]
+
+logic:
+lanes that are divided by multuple traffic lights(combine them into one big lane with multiple traffic lights with the
+combined density or to seperate it to multiple lanes that are connected by giving the density from one lane to another
+if one of the lanes are open).
+
+
+
+
+if 2 paraller roads are touching, we dont want to add a constraint.[v](we use premade maps)
+make to paraller roads that face the same direction combine.[x](we use premade maps)
+
+fix: curved road, draw big roads[v]
+
+
+car raycast forward and if it sees a car tag less then "1m" away, stop.(make on update)[v]
+
+
+after each cycle to resend new densities.[x](we use time to determain a cycle)
+
+cycle param can be changed by the user.
+
+draw more maps.
+
+number of changes in one cycle.
+
+time for each change in a cycle.

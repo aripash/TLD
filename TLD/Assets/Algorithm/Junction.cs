@@ -14,7 +14,7 @@ class Junction
     bool[,] _order;
     int[] _density;
     static int CYCLE_SIZE = 4; //max cycle size
-    private static Constraints cons;
+    public static Constraints cons;
 
     public Junction(int how_many_lanes, int[] _den)
     {
