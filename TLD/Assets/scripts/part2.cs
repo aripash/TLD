@@ -33,14 +33,13 @@ public class part2 : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds new or changes road's density
+    /// changes road's density
     /// </summary>
     /// <param name="name"> Road name </param>
     /// <param name="cpm"> Road's density (cars per minute) </param>
-    public void addRoad(int name, float cpm) 
+    public void changeRoad(int name, float cpm) 
     {
 
-        numOfRoads++;
         if (density.Count > name)
         {
             density.Insert(name, cpm);
@@ -50,6 +49,16 @@ public class part2 : MonoBehaviour
             density.Capacity = name + 1;
             density.Insert(name, cpm);
         }
+    }
+    /// <summary>
+    /// adds new road
+    /// </summary>
+    /// <param name="name"> Road name </param>
+    /// <param name="cpm"> Road's density (cars per minute) </param>
+    public void newRoad(int name, float cpm) 
+    {
+        numOfRoads++;
+        changeRoad(name, cpm);
     }
 
     /// <summary>

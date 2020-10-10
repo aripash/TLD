@@ -40,12 +40,14 @@ cycle param can be changed by the user.
 
 draw more maps.
 
-number of changes in one cycle.
+number of changes in one cycle. [v]
 
-time for each change in a cycle.
+time for each change in a cycle. [v]
 
-part2->addRoad->numOfRoads++(fix it)
+part2->addRoad->numOfRoads++(fix it) [v]
 
-cycles wont change when you change thier timer
+cycles wont change when you change thier timer [logicly OK]
 
 delay between lights switchs (yellow light)
+
+more and better comments (///)

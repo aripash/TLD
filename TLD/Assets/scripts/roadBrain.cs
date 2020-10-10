@@ -35,7 +35,7 @@ public class roadBrain : MonoBehaviour
             mid = 1;
         }
         list.Add(endRoad.transform.position);
-        algo.GetComponent<part2>().addRoad(int.Parse(gameObject.name), secondsPerCar);
+        algo.GetComponent<part2>().newRoad(int.Parse(gameObject.name), secondsPerCar);
     }
 
     // Update is called once per frame
@@ -85,6 +85,6 @@ public class roadBrain : MonoBehaviour
         int cpmt = int.Parse(cpm);
         secondsPerCar = 60 / cpmt;
         if (secondsPerCar < 1) secondsPerCar = 1;
-        algo.GetComponent<part2>().addRoad(int.Parse(gameObject.name), secondsPerCar);
+        algo.GetComponent<part2>().changeRoad(int.Parse(gameObject.name), secondsPerCar);
     }
 }
