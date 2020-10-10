@@ -47,3 +47,5 @@ time for each change in a cycle.
 part2->addRoad->numOfRoads++(fix it)
 
 cycles wont change when you change thier timer
+
+delay between lights switchs (yellow light)

@@ -13,12 +13,12 @@ public class Junction
 {
     bool[,] _order;
     int[] _density;
-    static int CYCLE_SIZE = 4; //max cycle size
+    //static int CYCLE_SIZE = 4; //max cycle size
     static Constraints cons;
 
     public Junction(int how_many_lanes, int[] _den)
     {
-        _order = new bool[how_many_lanes, CYCLE_SIZE];
+        _order = new bool[how_many_lanes, how_many_lanes];
         _density = _den;
         cons = new Constraints(how_many_lanes);
     }
