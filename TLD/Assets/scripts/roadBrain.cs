@@ -23,21 +23,31 @@ public class roadBrain : MonoBehaviour
     
     void Start()
     {
+        //make an interactable text field, and connect it to the code
         iF = Instantiate(inpf);
         iF.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         iF.onValueChanged.AddListener(delegate { newCPM(iF.text); });
         iF.placeholder.GetComponent<Text>().text +=""+ gameObject.name;
         iF.transform.position = new Vector3(125, 500 - 25 * int.Parse(gameObject.name), 0);
+
+        //find the constraint list to be able to add to it in the future
         constraints = GameObject.Find("constraints").GetComponent<constraint>();
+
+        //make a list of the driving points to give the cars later
         list = new List<Vector3>();
         list.Add(startRoad.transform.position);
         if (middleRoad != null) { list.Add(middleRoad.transform.position);
             mid = 1;
         }
         list.Add(endRoad.transform.position);
+
+        //send to the algorithm the road's details
         algo.GetComponent<part2>().newRoad(int.Parse(gameObject.name), secondsPerCar);
     }
 
+    /// <summary>
+    /// spawn a car at the starting point every secondsPerCar
+    /// </summary>
     // Update is called once per frame
     void Update()
     {
@@ -52,8 +62,7 @@ public class roadBrain : MonoBehaviour
     }
 
     /// <summary>
-    /// when you add a road, it needs to update the constraints when it touches another road
-    /// activates automaticly
+    /// when the roads intersect, we need to add that to the list of constraints for the algorithm
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
@@ -64,7 +73,7 @@ public class roadBrain : MonoBehaviour
     }
         
     /// <summary>
-    /// creates cars on the road, the cars will drive from start to end and through middle if it exists
+    /// creates cars on the road, the cars will drive from start to end and through middle if it exists.
     /// </summary>
     private void createCars()
     {
@@ -77,7 +86,7 @@ public class roadBrain : MonoBehaviour
         newCar.GetComponent<drive>().currentpoint = 1;
     }
     /// <summary>
-    /// Updates new density
+    /// Updates new density and send the new info to the algorithm
     /// </summary>
     /// <param name="cpm"> cars per minute </param>
     public void newCPM(string cpm)
@@ -85,6 +94,7 @@ public class roadBrain : MonoBehaviour
         int cpmt = int.Parse(cpm);
         secondsPerCar = 60 / cpmt;
         if (secondsPerCar < 1) secondsPerCar = 1;
+
         algo.GetComponent<part2>().changeRoad(int.Parse(gameObject.name), secondsPerCar);
     }
 }

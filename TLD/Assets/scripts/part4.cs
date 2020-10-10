@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class part4 : MonoBehaviour
 {
-    public void lights(Junction res,int time)
+    /// <summary>
+    /// we open and close the traffic lights according to the results we got from the algorithm
+    /// </summary>
+    /// <param name="res">the results we get after the algorithm finished</param>
+    public void lights(Junction res)
     {
         float[] switchPercent = CycleSegmentsCompute(res);
         bool[,] routeSwitch = res.getOrder();
@@ -12,17 +16,21 @@ public class part4 : MonoBehaviour
         int switches = switchPercent.Length;
         for(int i = 0; i < switches; i++)//iterate on each switch
         {
-            //set active if routeSwitch[j,i] is true else deactive
+            //close all roads first then wait a second and then open the roads
             for (int j = 0; j < gameObject.transform.childCount; j++)
             {
-                gameObject.transform.Find(j + "t").gameObject.SetActive(routeSwitch[j, i]);
+                gameObject.transform.Find(j + "t").gameObject.SetActive(false);
             }
+            for (float yellowLight = 0; yellowLight < 1; yellowLight += Time.deltaTime) ;
+            for (int j = 0; j < gameObject.transform.childCount; j++)
+            {
+                if(routeSwitch[j, i])gameObject.transform.Find(j + "t").gameObject.SetActive(true);
+            }
+
             //wait for the switch timer(switchPercent) to run out before the next switch
             for (float switchTimer = 0; switchTimer < switchPercent[i]; switchTimer += Time.deltaTime) ;
 
         }
-        /*string s = gameObject.transform.Find("x").name; get a child named x
-        string s = gameObject.transform.GetChild(i).name; get a child in position i*/
     }
 
     /// <summary>

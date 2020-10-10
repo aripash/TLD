@@ -11,8 +11,15 @@ public class part2 : MonoBehaviour
     [SerializeField] GameObject part4 = null;
     [SerializeField] int cycleTime = 40;
 
-    // Start is called before the first frame update
-
+    //in case someone changed the cycleTime before the program started
+    private void Start()
+    {
+        time = cycleTime - 1;
+    }
+    /// <summary>
+    /// after a second we begin to calculate the algorithm(we wait enough time for the other parts to send all of thier relevant info)
+    /// and after that we calculate the algorithm again every cycleTime seconds.
+    /// </summary>
     // Update is called once per frame
     void Update()
     {

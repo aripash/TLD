@@ -14,6 +14,9 @@ public class drive : MonoBehaviour
     private static int serial=0;
     public GameObject parent;
 
+    /// <summary>
+    /// checks each frame what the car needs to do: stop, continue driving, change direction or finish.
+    /// </summary>
     // Update is called once per frame
     void Update()
     {
@@ -48,6 +51,7 @@ public class drive : MonoBehaviour
             {
                 gameObject.transform.position = gps[currentpoint];
                 currentpoint++;
+                //if we are done with the road
                 if (currentpoint >= maxpoints) Destroy(gameObject);
                 else
                 {
@@ -59,6 +63,10 @@ public class drive : MonoBehaviour
 
         }
     }
+    /// <summary>
+    /// initialize the speed and direction of the car after spawning but after it got its vars from the road that spawned it
+    /// cant use start() for this
+    /// </summary>
     public void firstSpeed() {
         rb = GetComponent<Rigidbody>();
         Vector3 dir = (gps[1] - gps[0]).normalized;
@@ -66,9 +74,10 @@ public class drive : MonoBehaviour
         transform.LookAt(gps[1]);
         gameObject.name ="car no."+ serial++;
     }
-/*
-    public void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("car crash "+name+"  "+collision.gameObject.name);
-    }*/
+    /*
+     * for testing Purpose
+        public void OnCollisionEnter(Collision collision)
+        {
+            Debug.Log("car crash "+name+"  "+collision.gameObject.name);
+        }*/
 }

@@ -1,7 +1,7 @@
 unity to do:
 try to draw lanes, traffic light for that lane and traffic density.[x](we use premade maps)
 
-build set amount of junctions and let the user pick densities.[]
+build set amount of junctions and let the user pick densities.[v]
 
 to draw a lane you "click" a starting point and an end point and the program will draw a line with direction,
 then it will update the constraint list.[x](we use premade maps)
@@ -36,9 +36,9 @@ car raycast forward and if it sees a car tag less then "1m" away, stop.(make on 
 
 after each cycle to resend new densities.[x](we use time to determain a cycle)
 
-cycle param can be changed by the user.
+cycle param can be changed by the user.[]
 
-draw more maps.
+draw more maps.[]
 
 number of changes in one cycle. [v]
 
@@ -48,6 +48,10 @@ part2->addRoad->numOfRoads++(fix it) [v]
 
 cycles wont change when you change thier timer [logicly OK]
 
-delay between lights switchs (yellow light)
+delay between lights switchs (yellow light)[v]
 
-more and better comments (///)
+more and better comments (///)[v]
+
+complete UI[]
+
+make a main menu[]

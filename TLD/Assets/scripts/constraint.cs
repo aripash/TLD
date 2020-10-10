@@ -7,12 +7,10 @@ public class constraint : MonoBehaviour
     public static List<string> cons=new List<string>();
     float time = 0;
     [SerializeField] GameObject algo = null;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    /// <summary>
+    /// after 0.1 seconds(enough time for the roads to send thier info) send to the algorithm the constraint list and destroy this gameobject(unneeded)
+    /// </summary>
     // Update is called once per frame
     void Update()
     {
@@ -24,11 +22,11 @@ public class constraint : MonoBehaviour
         if (time > 0.2) Destroy(this);
     }
     /// <summary>
-    /// add a constraint to a list
+    /// add a constraint(when 2 roads collide they create constraint) to a list
     /// </summary>
     /// <param name="con">string that represents the constraint</param>
     public void addcons(string con) {
-        Debug.Log("collision  " + con);
+        //Debug.Log("collision  " + con);
         cons.Add(con);
         
     }
