@@ -8,7 +8,7 @@ public class part2 : MonoBehaviour
     static int numOfRoads = 0;
     List<float> density = new List<float>();
     float time = 39;
-    [SerializeField] GameObject part3 = null;
+    [SerializeField] GameObject part4 = null;
     [SerializeField] int cycleTime = 40;
 
     // Start is called before the first frame update
@@ -69,6 +69,6 @@ public class part2 : MonoBehaviour
         }
         Junction _jn = new Junction(_nor, _density.ToArray());
         Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.00001f,50);
-        part3.GetComponent<part4>().lights(_result);//send schedule instead
+        part4.GetComponent<part4>().lights(_result, cycleTime);//send schedule instead
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class roadBrain : MonoBehaviour
 {
     constraint constraints;
-    static int serialnumber=0;
+    //static int serialnumber=0;
     [SerializeField] float secondsPerCar=9999;
     [SerializeField] GameObject startRoad=null;
     [SerializeField] GameObject middleRoad=null;
@@ -26,9 +26,8 @@ public class roadBrain : MonoBehaviour
         iF = Instantiate(inpf);
         iF.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         iF.onValueChanged.AddListener(delegate { newCPM(iF.text); });
-        iF.placeholder.GetComponent<Text>().text +=""+ serialnumber;
-        iF.transform.position = new Vector3(125, 500 - 25 * serialnumber, 0);
-        gameObject.name = ""+serialnumber++;
+        iF.placeholder.GetComponent<Text>().text +=""+ gameObject.name;
+        iF.transform.position = new Vector3(125, 500 - 25 * int.Parse(gameObject.name), 0);
         constraints = GameObject.Find("constraints").GetComponent<constraint>();
         list = new List<Vector3>();
         list.Add(startRoad.transform.position);
@@ -85,6 +84,7 @@ public class roadBrain : MonoBehaviour
     {
         int cpmt = int.Parse(cpm);
         secondsPerCar = 60 / cpmt;
+        if (secondsPerCar < 1) secondsPerCar = 1;
         algo.GetComponent<part2>().addRoad(int.Parse(gameObject.name), secondsPerCar);
     }
 }

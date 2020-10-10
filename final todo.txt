@@ -43,3 +43,5 @@ draw more maps.
 number of changes in one cycle.
 
 time for each change in a cycle.
+
+part2->addRoad->numOfRoads++(fix it)
