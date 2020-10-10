@@ -45,3 +45,5 @@ number of changes in one cycle.
 time for each change in a cycle.
 
 part2->addRoad->numOfRoads++(fix it)
+
+cycles wont change when you change thier timer
