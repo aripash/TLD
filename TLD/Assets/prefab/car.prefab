@@ -1818,13 +1818,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7245b15136f27cf4fb17749cb37f5a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.5
   gps:
   - {x: -6.0664463, y: 0.22, z: 4.382224}
   - {x: -6.0664463, y: 0.22, z: 3.457}
   currentpoint: 1
   maxpoints: 2
   safeDistance: 0.25
+  parent: {fileID: 0}
 --- !u!54 &1555240599144895724
 Rigidbody:
   m_ObjectHideFlags: 0

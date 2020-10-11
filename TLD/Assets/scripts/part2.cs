@@ -83,7 +83,7 @@ public class part2 : MonoBehaviour
         Debug.Log(_result);
         //Debug.Log(tools.DeepToString(ref constraintList));
         Debug.Log(_result.Eval());
-        part4.GetComponent<part4>().lights(_result,cycleTime);//send schedule instead
+        StartCoroutine(part4.GetComponent<part4>().lights(_result,cycleTime));//send schedule instead
     }
     public void changeCycleTimer(string text) 
     {
