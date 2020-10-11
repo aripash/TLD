@@ -18,13 +18,21 @@ public class Junction
 
     public Junction(int how_many_lanes, int[] _den)
     {
-        _order = new bool[how_many_lanes, 6];
-        /*for (int i = 0; i < _order.GetLength(0); i++)
-        {
-            _order[i, i] = true;
-        }*/
+        //System.Random rand = new System.Random();
+        _order = new bool[how_many_lanes, how_many_lanes];
         _density = _den;
         cons = new Constraints(how_many_lanes);
+        for (int i = 0; i < how_many_lanes; i++)
+        {
+            _order[i, i] = true;
+            if (cons.numberOfCons(i) == 0)
+            {
+                for (int j = 0; j < how_many_lanes; j++)
+                {
+                    _order[i, j] = true;
+                }
+            }
+        }
     }
 
     public Junction(Junction original)
@@ -79,6 +87,7 @@ public class Junction
             /* High number of lanes active at same time + high density release */
             int tempCounter = 0; // how many lanes active at the same time
             int tempDen = 0;
+            //int[] _denClone = (int[])_density.Clone();
             if (result >= _order.GetLength(0))
             {
                 for (int i = 0; i < _order.GetLength(1); i++)
@@ -89,9 +98,14 @@ public class Junction
                         {
                             tempCounter++;
                             tempDen += _density[j];
+                            /* _denClone[j] = _density[j];*/
                         }
+                        /*    else
+                            {
+                                _denClone[j] *= 2;
+                            }*/
                     }
-                    result += (tempCounter * tempCounter) + tempDen;
+                    result += (tempCounter * tempCounter) + (tempDen * tempDen);
                     tempCounter = 0;
                     tempDen = 0;
                 }

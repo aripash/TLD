@@ -36,6 +36,7 @@ public class part4 : MonoBehaviour
             yield return new WaitForSeconds(switchPercent[i] * totalTime);
 
         }
+        
     }
 
     /// <summary>

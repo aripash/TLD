@@ -6300,6 +6300,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 581705693662494639, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2478123486241995646, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -12104,6 +12109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 581705693662494639, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2478123486241995646, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -13995,6 +14005,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 581705693662494639, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2478123486241995646, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
         type: 3}
@@ -19659,6 +19674,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 581705693662494639, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2478123486241995646, guid: 02fc5b5858ceee24c87fe6d3cec44dce,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -23321,6 +23341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: numOfRoads
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944934877445974024, guid: 709b1ae218b48b64589d6f4b31472c15,
+        type: 3}
+      propertyPath: timeForCycle
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8944934877445974025, guid: 709b1ae218b48b64589d6f4b31472c15,
         type: 3}

@@ -79,9 +79,9 @@ public class part2 : MonoBehaviour
             _cons.Add_cons(int.Parse(temp[0]), int.Parse(temp[1]));
         }
         Junction _jn = new Junction(_nor, _density.ToArray());
-        Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.0000001f,1000);
+        Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.00001f,3500);
         Debug.Log(_result);
-        //Debug.Log(tools.DeepToString(ref constraintList));
+        Debug.Log(tools.DeepToString(ref constraintList));
         Debug.Log(_result.Eval());
         StartCoroutine(part4.GetComponent<part4>().lights(_result,cycleTime));//send schedule instead
     }

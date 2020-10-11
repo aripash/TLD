@@ -49,7 +49,7 @@ using UnityEngine;
         /// <returns> Acceptor evaluation </returns>
         private static float Acceptor(int delta, float temprature)
         {
-            return (float)Math.Pow(Math.E, (float)delta / temprature);
+            return (float)Math.Pow(Math.E, ((float)delta / temprature));
         }
 
         /// <summary>

@@ -60,6 +60,19 @@ class Constraints
     {
         return cons_mat[a, b];
     }
+
+    public int numberOfCons(int a)
+    {
+        int res = 0;
+        for (int i = 0; i < LENGTH; i++)
+        {
+            if (cons_mat[a, i])
+            {
+                res++;
+            }
+        }
+        return res;
+    }
     /// <summary>
     /// ToString
     /// </summary>
