@@ -7,6 +7,7 @@ public class constraint : MonoBehaviour
     public static List<string> cons=new List<string>();
     float time = 0;
     [SerializeField] GameObject algo = null;
+    bool flag = false;
 
     /// <summary>
     /// after 0.1 seconds(enough time for the roads to send thier info) send to the algorithm the constraint list and destroy this gameobject(unneeded)
@@ -15,11 +16,12 @@ public class constraint : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if (time > 0.1)
+        if (time > 1&&!flag)
         {
             algo.GetComponent<part2>().constraintList = cons;
+            flag = true;
         }
-        if (time > 0.2) Destroy(this);
+
     }
     /// <summary>
     /// add a constraint(when 2 roads collide they create constraint) to a list
@@ -28,7 +30,7 @@ public class constraint : MonoBehaviour
     public void addcons(string con) {
         if (!cons.Contains(con))
         {
-            //Debug.Log("collision  " + con);
+            Debug.Log("collision  " + con);
             cons.Add(con);
         }   
     }

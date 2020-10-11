@@ -7,14 +7,14 @@ public class part2 : MonoBehaviour
     public List<string> constraintList = new List<string>();
     static int numOfRoads = 0;
     static List<float> density = new List<float>();
-    float time = 39;
+    float time = 38;
     [SerializeField] GameObject part4 = null;
     [SerializeField] int cycleTime = 40;
 
     //in case someone changed the cycleTime before the program started
     private void Start()
     {
-        time = cycleTime - 1;
+        time = cycleTime - 2;
     }
     /// <summary>
     /// after a second we begin to calculate the algorithm(we wait enough time for the other parts to send all of thier relevant info)
