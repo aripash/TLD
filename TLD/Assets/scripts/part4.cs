@@ -8,7 +8,7 @@ public class part4 : MonoBehaviour
     /// we open and close the traffic lights according to the results we got from the algorithm
     /// </summary>
     /// <param name="res">the results we get after the algorithm finished</param>
-    public void lights(Junction res)
+    public void lights(Junction res, float totalTime)
     {
         //Debug.Log(res.getOrder().Length);
         float[] switchPercent = CycleSegmentsCompute(res);
@@ -29,7 +29,7 @@ public class part4 : MonoBehaviour
             }
 
             //wait for the switch timer(switchPercent) to run out before the next switch
-            for (float switchTimer = 0; switchTimer < switchPercent[i]; switchTimer += Time.deltaTime) ;
+            for (float switchTimer = 0; switchTimer < (switchPercent[i]*totalTime); switchTimer += Time.deltaTime) ;
 
         }
     }
