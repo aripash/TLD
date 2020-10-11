@@ -23,7 +23,7 @@ public class part4 : MonoBehaviour
                 gameObject.transform.Find(j + "t").gameObject.SetActive(true);
             }
             //yellow light
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
 
             for (int j = 0; j < gameObject.transform.childCount; j++)
             {

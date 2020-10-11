@@ -18,11 +18,11 @@ public class Junction
 
     public Junction(int how_many_lanes, int[] _den)
     {
-        _order = new bool[how_many_lanes, how_many_lanes];
-        for (int i = 0; i < _order.GetLength(0); i++)
+        _order = new bool[how_many_lanes, 6];
+        /*for (int i = 0; i < _order.GetLength(0); i++)
         {
             _order[i, i] = true;
-        }
+        }*/
         _density = _den;
         cons = new Constraints(how_many_lanes);
     }

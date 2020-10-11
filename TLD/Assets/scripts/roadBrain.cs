@@ -42,7 +42,7 @@ public class roadBrain : MonoBehaviour
         list.Add(endRoad.transform.position);
 
         //send to the algorithm the road's details
-        algo.GetComponent<part2>().newRoad(int.Parse(gameObject.name), secondsPerCar);
+        algo.GetComponent<part2>().newRoad(int.Parse(gameObject.name), 60/secondsPerCar);
     }
 
     /// <summary>
@@ -92,9 +92,9 @@ public class roadBrain : MonoBehaviour
     public void newCPM(string cpm)
     {
         int cpmt = int.Parse(cpm);
-        secondsPerCar = 60 / cpmt;
+        secondsPerCar =cpmt;
         if (secondsPerCar < 1) secondsPerCar = 1;
 
-        algo.GetComponent<part2>().changeRoad(int.Parse(gameObject.name), secondsPerCar);
+        algo.GetComponent<part2>().changeRoad(int.Parse(gameObject.name), 60/secondsPerCar);
     }
 }
