@@ -26,7 +26,7 @@ using UnityEngine;
                     Junction jen_new = jen.Choose_Random_Successor();
                     int eval_new = jen_new.Eval();
                     int delta_jen = eval_new - eval;
-                    if (delta_jen > 0 || rand.NextDouble() < Acceptor(delta_jen, t))
+                    if (delta_jen > 0 || (rand.NextDouble() < Acceptor(delta_jen, t) && eval_new > 0))
                     {
                         jen = jen_new;
                         eval = eval_new;

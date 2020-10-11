@@ -16,7 +16,7 @@ public class part4 : MonoBehaviour
         int switches = switchPercent.Length;
         for(int i = 0; i < switches; i++)//iterate on each switch
         {
-            Debug.Log("switching");
+            //Debug.Log("switching");
             //close all roads first then wait a second and then open the roads
             for (int j = 0; j < gameObject.transform.childCount; j++)
             {
@@ -47,7 +47,7 @@ public class part4 : MonoBehaviour
     {
         int _segmentNumber = _jn.getOrder().GetLength(1); //how many segments for cycle
         float[] _percent = new float[_segmentNumber];  //the % for each segment of cycle
-        int[] _den_sum = new int[_segmentNumber];  //the % for each segment of cycle
+        float[] _den_sum = new float[_segmentNumber];  //the % for each segment of cycle
         bool[,] _order = _jn.getOrder();
         int _sum = 0;
 
