@@ -10,6 +10,7 @@ public class part4 : MonoBehaviour
     /// <param name="res">the results we get after the algorithm finished</param>
     public void lights(Junction res)
     {
+        Debug.Log(res.getOrder().Length);
         float[] switchPercent = CycleSegmentsCompute(res);
         bool[,] routeSwitch = res.getOrder();
         //open lights(children) acording to res 

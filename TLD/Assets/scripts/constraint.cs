@@ -26,8 +26,10 @@ public class constraint : MonoBehaviour
     /// </summary>
     /// <param name="con">string that represents the constraint</param>
     public void addcons(string con) {
-        //Debug.Log("collision  " + con);
-        cons.Add(con);
-        
+        if (!cons.Contains(con))
+        {
+            Debug.Log("collision  " + con);
+            cons.Add(con);
+        }   
     }
 }
