@@ -19,6 +19,10 @@ public class Junction
     public Junction(int how_many_lanes, int[] _den)
     {
         _order = new bool[how_many_lanes, how_many_lanes];
+        for (int i = 0; i < _order.GetLength(0); i++)
+        {
+            _order[i, i] = true;
+        }
         _density = _den;
         cons = new Constraints(how_many_lanes);
     }
@@ -57,9 +61,9 @@ public class Junction
                 }
             }
         }
-        /* High number of lanes diversity */
         if (result >= 0)
         {
+            /* High number of lanes diversity */
             for (int i = 0; i < _order.GetLength(0); i++)
             {
                 for (int j = 0; j < _order.GetLength(1); j++)
@@ -71,10 +75,11 @@ public class Junction
                     }
                 }
             }
-
-            /* High number of lanes active at same time */
-            int tempCounter = 0;
-            if (result >= _order.GetLength(0) - 1)
+            // result highest evaluation can be : number of lanes
+            /* High number of lanes active at same time + high density release */
+            int tempCounter = 0; // how many lanes active at the same time
+            int tempDen = 0;
+            if (result >= _order.GetLength(0))
             {
                 for (int i = 0; i < _order.GetLength(1); i++)
                 {
@@ -83,23 +88,12 @@ public class Junction
                         if (_order[j, i] == true)
                         {
                             tempCounter++;
+                            tempDen += _density[j];
                         }
                     }
-                    result += (tempCounter * tempCounter);
-                }
-
-                /* High load release? */
-                int tempCounterDensity = 0;
-                for (int i = 0; i < _order.GetLength(0); i++)
-                {
-                    for (int j = 0; j < _order.GetLength(1); j++)
-                    {
-                        if (_order[i, j] == true)
-                        {
-                            tempCounterDensity += _density[i];
-                        }
-                    }
-                    result += tempCounterDensity * tempCounterDensity;
+                    result += (tempCounter * tempCounter) + tempDen;
+                    tempCounter = 0;
+                    tempDen = 0;
                 }
             }
         }

@@ -78,7 +78,7 @@ public class part2 : MonoBehaviour
             _cons.Add_cons(int.Parse(temp[0]), int.Parse(temp[1]));
         }
         Junction _jn = new Junction(_nor, _density.ToArray());
-        Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.000000001f,5000);
+        Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.0000001f,1000);
         Debug.Log(_result);
         Debug.Log(tools.DeepToString(ref constraintList));
         Debug.Log(_result.Eval());
