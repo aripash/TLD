@@ -7,36 +7,30 @@ public class part2 : MonoBehaviour
     public List<string> constraintList = new List<string>();
     [SerializeField] int numOfRoads = 0;
     static List<float> density = new List<float>();
-    float time = 38;
     [SerializeField] GameObject part4 = null;
     int cycleTime = 300;
     [SerializeField] int timeForCycle = 20;
     //in case someone changed the cycleTime before the program started
     private void Start()
     {
-        cycleTime = timeForCycle*numOfRoads;
-        time = cycleTime - 2;
+        cycleTime = timeForCycle * numOfRoads;
+
     }
     /// <summary>
     /// after a second we begin to calculate the algorithm(we wait enough time for the other parts to send all of thier relevant info)
     /// and after that we calculate the algorithm again every cycleTime seconds.
     /// </summary>
-    // Update is called once per frame
-    void Update()
+    public IEnumerator restart()
     {
-        time += Time.deltaTime;
-        if (time > cycleTime) 
+        yield return new WaitForSeconds(2);
+        List<int> _int_den = new List<int>();
+        foreach (float f in density)
         {
-            time = 0;
-            List<int> _int_den = new List<int>();
-            foreach(float f in density)
-            {
-                _int_den.Add((int)(f));
-            }
-            AlgoRun(numOfRoads, _int_den);
+            _int_den.Add((int)(f));
         }
-
+        AlgoRun(numOfRoads, _int_den);
     }
+
 
     /// <summary>
     /// changes road's density
