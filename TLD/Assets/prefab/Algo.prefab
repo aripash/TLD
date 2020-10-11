@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   constraintList: []
   part4: {fileID: 3811689089441768686, guid: 4fc2a08743682134bbe875f1837ba2ea, type: 3}
-  cycleTime: 40
+  cycleTime: 300

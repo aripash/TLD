@@ -5,15 +5,16 @@ using UnityEngine;
 public class part2 : MonoBehaviour
 {
     public List<string> constraintList = new List<string>();
-    static int numOfRoads = 0;
+    [SerializeField] int numOfRoads = 0;
     static List<float> density = new List<float>();
     float time = 38;
     [SerializeField] GameObject part4 = null;
-    [SerializeField] int cycleTime = 40;
-
+    int cycleTime = 300;
+    [SerializeField] int timeForCycle = 20;
     //in case someone changed the cycleTime before the program started
     private void Start()
     {
+        cycleTime = timeForCycle*numOfRoads;
         time = cycleTime - 2;
     }
     /// <summary>
@@ -58,7 +59,6 @@ public class part2 : MonoBehaviour
     /// <param name="cpm"> Road's density (cars per minute) </param>
     public void newRoad(int name, float cpm) 
     {
-        numOfRoads++;
         changeRoad(name, cpm);
     }
 
@@ -71,6 +71,7 @@ public class part2 : MonoBehaviour
     /// each column represents number of element to open. </returns>
     public void AlgoRun(int _nor, List<int> _density)
     {
+        cycleTime = numOfRoads * 20;
         Constraints _cons = new Constraints(_nor);
         foreach (string s in constraintList)
         {
@@ -80,12 +81,13 @@ public class part2 : MonoBehaviour
         Junction _jn = new Junction(_nor, _density.ToArray());
         Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.0000001f,1000);
         Debug.Log(_result);
-        Debug.Log(tools.DeepToString(ref constraintList));
+        //Debug.Log(tools.DeepToString(ref constraintList));
         Debug.Log(_result.Eval());
         part4.GetComponent<part4>().lights(_result,cycleTime);//send schedule instead
     }
     public void changeCycleTimer(string text) 
     {
-        cycleTime = int.Parse(text);
+        timeForCycle = int.Parse(text);
+        cycleTime = timeForCycle * numOfRoads;
     }
 }

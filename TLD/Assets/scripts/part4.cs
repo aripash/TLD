@@ -9,27 +9,30 @@ public class part4 : MonoBehaviour
     /// </summary>
     /// <param name="res">the results we get after the algorithm finished</param>
     public void lights(Junction res, float totalTime)
-    {
-        //Debug.Log(res.getOrder().Length);
+    {    
         float[] switchPercent = CycleSegmentsCompute(res);
         bool[,] routeSwitch = res.getOrder();
         //open lights(children) acording to res 
         int switches = switchPercent.Length;
         for(int i = 0; i < switches; i++)//iterate on each switch
         {
+            Debug.Log("switching");
             //close all roads first then wait a second and then open the roads
             for (int j = 0; j < gameObject.transform.childCount; j++)
             {
-                gameObject.transform.Find(j + "t").gameObject.SetActive(false);
+                gameObject.transform.Find(j + "t").gameObject.SetActive(true);
             }
-            for (float yellowLight = 0; yellowLight < 1; yellowLight += Time.deltaTime) ;
+            //yellow light
+            StartCoroutine( wasteTime(1));
             for (int j = 0; j < gameObject.transform.childCount; j++)
             {
-                if(routeSwitch[j, i])gameObject.transform.Find(j + "t").gameObject.SetActive(true);
+                if(routeSwitch[j, i])
+                    gameObject.transform.Find(j + "t").gameObject.SetActive(false);
             }
 
             //wait for the switch timer(switchPercent) to run out before the next switch
-            for (float switchTimer = 0; switchTimer < (switchPercent[i]*totalTime); switchTimer += Time.deltaTime) ;
+            Debug.Log("percent " + switchPercent[i] + "  total time " + totalTime);
+            StartCoroutine(wasteTime(switchPercent[i]*totalTime));
 
         }
     }
@@ -71,5 +74,10 @@ public class part4 : MonoBehaviour
         }
 
         return _percent;
+    }
+
+    IEnumerator wasteTime(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 }

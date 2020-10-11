@@ -30,7 +30,7 @@ public class constraint : MonoBehaviour
     public void addcons(string con) {
         if (!cons.Contains(con))
         {
-            Debug.Log("collision  " + con);
+            //Debug.Log("collision  " + con);
             cons.Add(con);
         }   
     }
