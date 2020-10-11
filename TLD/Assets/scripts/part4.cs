@@ -10,7 +10,7 @@ public class part4 : MonoBehaviour
     /// <param name="res">the results we get after the algorithm finished</param>
     public void lights(Junction res)
     {
-        Debug.Log(res.getOrder().Length);
+        //Debug.Log(res.getOrder().Length);
         float[] switchPercent = CycleSegmentsCompute(res);
         bool[,] routeSwitch = res.getOrder();
         //open lights(children) acording to res 
@@ -51,11 +51,12 @@ public class part4 : MonoBehaviour
 
         for (int i = 0; i < _order.GetLength(1); i++)   //sum of each segment
         {
-            for (int j = 0; j < _order.GetLength(0); j++)
+            for (int j = 0; j < _jn.getDensity().Length; j++)
             {
                 if (_order[j, i] == true)
                 {
                     _den_sum[i] += _jn.getDensity()[j];
+                    //Debug.Log(_jn.getDensity()[j]);
                 }
             }
         }
@@ -65,7 +66,8 @@ public class part4 : MonoBehaviour
         }
         for (int i = 0; i < _order.GetLength(1); i++)   //percent for each segment
         {
-            _percent[i] = _den_sum[i] / _sum;
+            if(_sum != 0)
+                _percent[i] = _den_sum[i] / _sum;
         }
 
         return _percent;

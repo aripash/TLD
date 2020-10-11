@@ -6,7 +6,7 @@ public class part2 : MonoBehaviour
 {
     public List<string> constraintList = new List<string>();
     static int numOfRoads = 0;
-    List<float> density = new List<float>();
+    static List<float> density = new List<float>();
     float time = 39;
     [SerializeField] GameObject part4 = null;
     [SerializeField] int cycleTime = 40;
@@ -24,17 +24,15 @@ public class part2 : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if (time > cycleTime ) 
+        if (time > cycleTime) 
         {
             time = 0;
             List<int> _int_den = new List<int>();
             foreach(float f in density)
             {
-                _int_den.Add((int)(1000 / f));
+                _int_den.Add((int)(f));
             }
             AlgoRun(numOfRoads, _int_den);
-            
-            //Debug.Log(tools.DeepToString(ref res));
         }
 
     }
@@ -46,16 +44,12 @@ public class part2 : MonoBehaviour
     /// <param name="cpm"> Road's density (cars per minute) </param>
     public void changeRoad(int name, float cpm) 
     {
-
-        if (density.Count > name)
+        //Debug.Log(tools.DeepToString(ref density));
+        while (density.Count <= name)
         {
-            density.Insert(name, cpm);
+            density.Add(0f);
         }
-        else
-        {
-            density.Capacity = name + 1;
-            density.Insert(name, cpm);
-        }
+        density[name] = cpm;
     }
     /// <summary>
     /// adds new road
@@ -84,7 +78,10 @@ public class part2 : MonoBehaviour
             _cons.Add_cons(int.Parse(temp[0]), int.Parse(temp[1]));
         }
         Junction _jn = new Junction(_nor, _density.ToArray());
-        Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.00001f,50);
+        Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.000000001f,5000);
+        Debug.Log(_result);
+        Debug.Log(tools.DeepToString(ref constraintList));
+        Debug.Log(_result.Eval());
         part4.GetComponent<part4>().lights(_result);//send schedule instead
     }
     public void changeCycleTimer(string text) 
