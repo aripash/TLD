@@ -36,7 +36,7 @@ car raycast forward and if it sees a car tag less then "1m" away, stop.(make on 
 
 after each cycle to resend new densities.[x](we use time to determain a cycle)
 
-cycle param can be changed by the user.[]
+cycle param can be changed by the user.[v]
 
 draw more maps.[]
 
@@ -52,6 +52,6 @@ delay between lights switchs (yellow light)[v]
 
 more and better comments (///)[v]
 
-complete UI[]
+complete UI[v]
 
-make a main menu[]
+make a main menu[v]

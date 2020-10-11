@@ -85,6 +85,10 @@ public class part2 : MonoBehaviour
         }
         Junction _jn = new Junction(_nor, _density.ToArray());
         Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.00001f,50);
-        part4.GetComponent<part4>().lights(_result, cycleTime);//send schedule instead
+        part4.GetComponent<part4>().lights(_result);//send schedule instead
+    }
+    public void changeCycleTimer(string text) 
+    {
+        cycleTime = int.Parse(text);
     }
 }
