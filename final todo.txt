@@ -64,4 +64,4 @@ add genetics to the algo[x](not enough time)
 
 the algo needs to give better results[]
 
-a lot of testing[]
+a lot of testing[v]
