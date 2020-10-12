@@ -8,8 +8,8 @@ using UnityEngine;
 class Constraints
 {
     //Neighbours Matrix for Constraints
-    static bool[,] cons_mat;
-    private static int LENGTH;
+    public static bool[,] cons_mat;
+    public static int LENGTH;
 //    private static int testCount = 0;
 
     public Constraints(int size)
@@ -19,6 +19,11 @@ class Constraints
             cons_mat = new bool[size, size];
             LENGTH = size;
         }
+  /*      if(LENGTH!=size)
+        {
+            cons_mat = new bool[size, size];
+            LENGTH = size;
+        }*/
     }
     
     public Constraints()

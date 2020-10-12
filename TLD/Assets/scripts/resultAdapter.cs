@@ -56,7 +56,7 @@ public class resultAdapter : MonoBehaviour
 
         for (int i = 0; i < _order.GetLength(1); i++)   //sum of each segment
         {
-            for (int j = 0; j < _jn.getDensity().Length; j++)
+            for (int j = 0; j < _order.GetLength(0); j++)
             {
                 if (_order[j, i] == true)
                 {

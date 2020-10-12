@@ -13,6 +13,9 @@ public class dataAdapter : MonoBehaviour
     //in case someone changed the cycleTime before the program started
     private void Start()
     {
+        //density = new List<float>();
+        Constraints.cons_mat = null;
+        drive.serial = 0;
         cycleTime = timeForCycle * numOfRoads;
         StartCoroutine(restart());
 

@@ -11,7 +11,7 @@ public class drive : MonoBehaviour
     public int maxpoints = 2;
     Rigidbody rb;
     [SerializeField]float safeDistance = 1;
-    private static int serial=0;
+    public static int serial=0;
     public GameObject parent;
 
     /// <summary>

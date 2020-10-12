@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class constraint : MonoBehaviour
 {
-    public static List<string> cons=new List<string>();
+    public static List<string> cons = null;
     float time = 0;
     [SerializeField] GameObject algo = null;
     bool flag = false;
 
+    private void Start()
+    {
+
+        cons = new List<string>();
+    }
     /// <summary>
     /// after 0.1 seconds(enough time for the roads to send thier info) send to the algorithm the constraint list and destroy this gameobject(unneeded)
     /// </summary>
