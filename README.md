@@ -35,9 +35,13 @@ The ***order*** is a boolean matrix composed	from lanes and segments, each row r
 
 ### ***Evaluation function - Eval:*** return the huerist evaluation for openning order which is necessary for picking the best solution.
   **The evaluation proccess:**
+  
     1. No constraints
+    
     2. All lanes are present within the cycle
+    
     3. The more lanes are green in each segment - the better
+    
     4. The more lanes with higher overall density are green - the better 
 
 ### ***Picking Contender:*** Simulated annealing picks random child and decides if child is better than parent.
