@@ -72603,6 +72603,11 @@ PrefabInstance:
       propertyPath: timeForCycle
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8944934877445974024, guid: 709b1ae218b48b64589d6f4b31472c15,
+        type: 3}
+      propertyPath: resultAdapter
+      value: 
+      objectReference: {fileID: 595886246}
     - target: {fileID: 8944934877445974025, guid: 709b1ae218b48b64589d6f4b31472c15,
         type: 3}
       propertyPath: m_Name

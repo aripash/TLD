@@ -481,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
@@ -6361,7 +6361,7 @@ PrefabInstance:
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
@@ -7892,7 +7892,7 @@ PrefabInstance:
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
@@ -10421,7 +10421,7 @@ PrefabInstance:
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8592988987328471287, guid: da0ebdf40b9f6d143ab75ca9d5e12180,
         type: 3}
@@ -12887,6 +12887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.x
       value: -1.2409301
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925070672632352999, guid: 001e79af8007ea54fb12792577a6dd66,
+        type: 3}
+      propertyPath: secondsPerCar
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7569902857377987911, guid: 001e79af8007ea54fb12792577a6dd66,
         type: 3}
@@ -23451,6 +23456,11 @@ PrefabInstance:
       propertyPath: timeForCycle
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8944934877445974024, guid: 709b1ae218b48b64589d6f4b31472c15,
+        type: 3}
+      propertyPath: resultAdapter
+      value: 
+      objectReference: {fileID: 595886246}
     - target: {fileID: 8944934877445974025, guid: 709b1ae218b48b64589d6f4b31472c15,
         type: 3}
       propertyPath: m_Name
