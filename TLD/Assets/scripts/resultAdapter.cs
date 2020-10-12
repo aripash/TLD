@@ -36,7 +36,7 @@ public class resultAdapter : MonoBehaviour
             yield return new WaitForSeconds(switchPercent[i] * totalTime);
 
         }
-        GameObject.Find("Algo").GetComponent<dataAdapter>().restart();
+        StartCoroutine(GameObject.Find("Algo").GetComponent<dataAdapter>().restart());
     }
 
     /// <summary>
@@ -77,4 +77,5 @@ public class resultAdapter : MonoBehaviour
 
         return _percent;
     }
+
 }

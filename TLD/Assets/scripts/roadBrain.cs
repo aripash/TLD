@@ -25,7 +25,7 @@ public class roadBrain : MonoBehaviour
         //make an interactable text field, and connect it to the code
         iF = Instantiate(inpf);
         iF.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-        iF.onValueChanged.AddListener(delegate { newCPM(iF.text); });
+        iF.onEndEdit.AddListener(delegate { newCPM(iF.text); });
         iF.placeholder.GetComponent<Text>().text +=""+ gameObject.name;
         iF.transform.position = new Vector3(125, 500 - 25 * int.Parse(gameObject.name), 0);
 
@@ -91,9 +91,10 @@ public class roadBrain : MonoBehaviour
     public void newCPM(string cpm)
     {
         int cpmt = int.Parse(cpm);
-        secondsPerCar =60/cpmt;
-        if (secondsPerCar !=0)
-            if (secondsPerCar < 1) secondsPerCar = 1;
+        if (cpmt < 1|| cpmt > 60)
+            secondsPerCar = 1;
+        else secondsPerCar =60/cpmt;
+
 
         algo.GetComponent<dataAdapter>().changeRoad(int.Parse(gameObject.name), 60/secondsPerCar);
     }

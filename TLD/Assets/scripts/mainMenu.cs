@@ -8,4 +8,8 @@ public class mainMenu : MonoBehaviour
     public void sceneSelect(string sceneName) {
         SceneManager.LoadScene(int.Parse(sceneName));
     }
+    public void exit()
+    {
+        Application.Quit();
+    }
 }

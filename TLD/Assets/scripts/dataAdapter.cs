@@ -10,6 +10,7 @@ public class dataAdapter : MonoBehaviour
     [SerializeField] GameObject resultAdapter = null;
     int cycleTime = 300;
     [SerializeField] int timeForCycle = 20;
+    Coroutine corutine;
     //in case someone changed the cycleTime before the program started
     private void Start()
     {
@@ -26,6 +27,7 @@ public class dataAdapter : MonoBehaviour
     /// </summary>
     public IEnumerator restart()
     {
+        Debug.Log("restarting");
         yield return new WaitForSeconds(2);
         List<int> _int_den = new List<int>();
         foreach (float f in density)
@@ -44,11 +46,10 @@ public class dataAdapter : MonoBehaviour
     public void changeRoad(int name, float cpm) 
     {
         //Debug.Log(tools.DeepToString(ref density));
-        while (density.Count <= name)
-        {
-            density.Add(0f);
-        }
-        density[name] = cpm;
+        newRoad(name, cpm);
+        if (corutine != null)
+            StopCoroutine(corutine);
+        StartCoroutine(restart());
     }
     /// <summary>
     /// adds new road
@@ -57,7 +58,11 @@ public class dataAdapter : MonoBehaviour
     /// <param name="cpm"> Road's density (cars per minute) </param>
     public void newRoad(int name, float cpm) 
     {
-        changeRoad(name, cpm);
+        while (density.Count <= name)
+        {
+            density.Add(0f);
+        }
+        density[name] = cpm;
     }
 
     /// <summary>
@@ -81,7 +86,7 @@ public class dataAdapter : MonoBehaviour
         Debug.Log(_result);
         Debug.Log(tools.DeepToString(ref constraintList));
         Debug.Log(_result.Eval());
-        StartCoroutine(resultAdapter.GetComponent<resultAdapter>().lights(_result,cycleTime));//send schedule instead
+        corutine = StartCoroutine(resultAdapter.GetComponent<resultAdapter>().lights(_result, cycleTime));//send schedule instead
     }
     public void changeCycleTimer(string text) 
     {
