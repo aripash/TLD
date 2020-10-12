@@ -62,6 +62,10 @@ change the map to not have right turns[v]
 
 add genetics to the algo[x](not enough time)
 
-the algo needs to give better results[]
-
 a lot of testing[v]
+
+pptx[]
+
+cycle change->restart[]
+
+more commants[]
