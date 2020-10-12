@@ -15,9 +15,17 @@ Therefore it is very important that the roads will allow efficient traffic flow,
 We aim for the 'TLD' traffic light algorithm we are developing to be a solution to efficient real-time traffic light distribution. The system today is largely built from statistics methods and not sufficiently affected by real-time information, so on the road many drivers lose precious time that can be dragged into hours of wasted time.
 
 Our algorithm should be efficient enough to handle information and calculation in real time.
-
+![Main idea](/images/TLD.mp4)
 
 # Unity Part - Traffic Simulation
+
+We are using Unity to perform the visual representation of the project.
+With Unity we can show roads with cars on them and how the algorithm handles all the info and how good the results are based on visual and human judgment.
+Unity is a good and easy to use engine and since it works on real-time we can change the info the algorithm has in-real time just like we require to simulate a real junctions and the constant changes that happen on it.
+
+in the following short video we can see how the system works behind the scense, the red diamonds represent the routes, yellow the points the cars need to pass through thier drive, purple are simulated traffic lights(due to time constraint we didnt put a sculpter of one with changing lights), the roads themselfs and the background.
+![Unity Part - Traffic Simulation](/images/TLD - road2 - PC, Mac & Linux Standalone - Unity 2019.4.0f1 Personal _DX11_ 2020-10-12 15-29-06.mp4)
+
 
 # Algorithm - Simulated Annealing
 
