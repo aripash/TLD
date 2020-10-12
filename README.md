@@ -21,3 +21,6 @@ Our algorithm should be efficient enough to handle information and calculation i
 
 # Algorithm - Simulated Annealing
 
+We are using [**Simulated Annealing (wiki)**](https://en.wikipedia.org/wiki/Simulated_annealing) as our main algorithm.
+
+
