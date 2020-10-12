@@ -24,6 +24,8 @@ With Unity we can show roads with cars on them and how the algorithm handles all
 Unity is a good and easy to use engine and since it works on real-time we can change the info the algorithm has in-real time just like we require to simulate a real junctions and the constant changes that happen on it.
 
 in the following short video we can see how the system works behind the scense, the red diamonds represent the routes, yellow the points the cars need to pass through thier drive, purple are simulated traffic lights(due to time constraint we didnt put a sculpter of one with changing lights), the roads themselfs and the background.
+
+
 ![Unity Part Traffic Simulation](/images/TLD-Unity.gif)
 
 
