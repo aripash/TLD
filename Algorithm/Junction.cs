@@ -2,136 +2,148 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using UnityEngine;
 
-namespace TLD
+/// <summary>
+/// Class represents junction with array as lane number (as given).
+/// Order represents which order lanes get green in traffic light cycle
+/// Density represents how dense each lane for Utility evaluation
+/// </summary>
+public class Junction
 {
-    /// <summary>
-    /// Class represents junction with array as lane number (as given).
-    /// Order represents which order lanes get green in traffic light cycle
-    /// Density represents how dense each lane for Utility evaluation
-    /// </summary>
-    class Junction
+    bool[,] _order;
+    int[] _density;
+    //static int CYCLE_SIZE = 4; //max cycle size
+    static Constraints cons;
+
+    public Junction(int how_many_lanes, int[] _den)
     {
-        bool[,] _order;
-        int[] _density;
-        static int CYCLE_SIZE = 4; //max cycle size
-        private static Constraints cons;
-
-        public Junction(int how_many_lanes, int[] _den)
+        //System.Random rand = new System.Random();
+        _order = new bool[how_many_lanes, how_many_lanes];
+        _density = _den;
+        cons = new Constraints(how_many_lanes);
+        for (int i = 0; i < how_many_lanes; i++)
         {
-            _order = new bool[how_many_lanes, CYCLE_SIZE];
-            _density = _den;
-            cons = new Constraints(how_many_lanes);
+            _order[i, i] = true;
+            if (cons.numberOfCons(i) == 0)
+            {
+                for (int j = 0; j < how_many_lanes; j++)
+                {
+                    _order[i, j] = true;
+                }
+            }
         }
+    }
 
-        public Junction(Junction original)
+    public Junction(Junction original)
+    {
+        this._order = (bool[,])original._order.Clone();
+        this._density = (int[])original._density.Clone();
+
+    }
+
+    /// <summary>
+    /// Utility evaluation
+    /// </summary>
+    /// <returns> if result<0 : how many constraints are not satisfied
+    /// if result > 0 : how good _order with given density </returns>
+    public int Eval()
+    {
+        int result = 0;
+        /** Negative check: go through every col -> find #t in col -> check for other #t in same col for constraints
+         * each constraint -1 Utilily **/
+        for (int i = 0; i < _order.GetLength(1); i++)
         {
-            this._order = (bool[,])original._order.Clone();
-            this._density = (int[])original._density.Clone();
-
+            for (int j = 0; j < _order.GetLength(0); j++)
+            {
+                if (_order[j, i])
+                {
+                    for (int k = j + 1; k < _order.GetLength(0); k++)
+                    {
+                        if (_order[k, i])
+                        {
+                            if (cons.Check_cons(k, j))
+                                result--;
+                        }
+                    }
+                }
+            }
         }
-
-        /// <summary>
-        /// Utility evaluation
-        /// </summary>
-        /// <returns> if result<0 : how many constraints are not satisfied
-        /// if result > 0 : how good _order with given density </returns>
-        public int Eval()
+        if (result >= 0)
         {
-            int result = 0;
-            /** Negative check: go through every row -> find #t in row -> check for other #t in same row for constraints
-             * each constraint -1 Utilily **/
+            /* High number of lanes diversity */
             for (int i = 0; i < _order.GetLength(0); i++)
             {
                 for (int j = 0; j < _order.GetLength(1); j++)
                 {
-                    if (_order[i, j])
+                    if (_order[i, j] == true)
                     {
-                        for (int k = j + 1; k < _order.GetLength(1); k++)
-                        {
-                            if (_order[i, k])
-                            {
-                                if (cons.Check_cons(k, j))
-                                    result--;
-                            }
-                        }
+                        result++;
+                        j = _order.GetLength(1);
                     }
                 }
             }
-            /* High number of lanes diversity */
-            if (result >= 0)
+            // result highest evaluation can be : number of lanes
+            /* High number of lanes active at same time + high density release */
+            int tempCounter = 0; // how many lanes active at the same time
+            int tempDen = 0;
+            //int[] _denClone = (int[])_density.Clone();
+            if (result >= _order.GetLength(0))
             {
-                for (int i = 0; i < _order.GetLength(0); i++)
+                for (int i = 0; i < _order.GetLength(1); i++)
                 {
-                    for (int j = 0; j < _order.GetLength(1); j++)
+                    for (int j = 0; j < _order.GetLength(0); j++)
                     {
-                        if (_order[i, j] == true)
+                        if (_order[j, i] == true)
                         {
-                            result++;
-                            j = _order.GetLength(1);
+                            tempCounter++;
+                            tempDen += _density[j];
+                            /* _denClone[j] = _density[j];*/
                         }
-                    }
-                }
-
-                /* High number of lanes active at same time */
-                int tempCounter = 0;
-                if (result >= _order.GetLength(0) - 1)
-                {
-                    for (int i = 0; i < _order.GetLength(0); i++)
-                    {
-                        for (int j = 0; j < _order.GetLength(1); j++)
-                        {
-                            if (_order[j, i] == true)
+                        /*    else
                             {
-                                tempCounter++;
-                            }
-                        }
-                        result += (tempCounter * tempCounter);
+                                _denClone[j] *= 2;
+                            }*/
                     }
-
-                    /* High load release? */
-                    int tempCounterDensity = 0;
-                    for (int i = 0; i < _order.GetLength(0); i++)
-                    {
-                        for (int j = 0; j < _order.GetLength(1); j++)
-                        {
-                            if (_order[i, j] == true)
-                            {
-                                tempCounterDensity += _density[i];
-                            }
-                        }
-                        result += tempCounterDensity * tempCounterDensity;
-                    }
+                    result += (tempCounter * tempCounter) + (tempDen * tempDen);
+                    tempCounter = 0;
+                    tempDen = 0;
                 }
             }
-
-            return result;
         }
 
-        /// <summary>
-        /// Randomly creates successor 
-        /// </summary>
-        /// <returns> random Successor Junction</returns>
-        public Junction Choose_Random_Successor()
-        {
-            Random rand = new Random();
-            Junction temp = new Junction(this);
-            int tempRandRow = rand.Next(_order.GetLength(0));
-            int tempRandCol = rand.Next(_order.GetLength(1));
-            temp._order[tempRandRow, tempRandCol] = !temp._order[tempRandRow, tempRandCol];
-            return temp;
-        }
+        return result;
+    }
 
-        public bool[,] getOrder()
-        {
-            return _order;
-        }
+    /// <summary>
+    /// Randomly creates successor 
+    /// </summary>
+    /// <returns> random Successor Junction</returns>
+    public Junction Choose_Random_Successor()
+    {
+        System.Random rand = new System.Random();
+        Junction temp = new Junction(this);
+        int tempRandRow = rand.Next(_order.GetLength(0));
+        int tempRandCol = rand.Next(_order.GetLength(1));
+        temp._order[tempRandRow, tempRandCol] = !temp._order[tempRandRow, tempRandCol];
+        return temp;
+    }
 
-        public override string ToString()
-        {
-            string res = "";
-            res += "ORDER:   \n" + tools.DeepToString(ref _order) + "DENSITY:   " + tools.DeepToString(ref _density) + "EVAL:   " + Eval();
-            return res; ;
-        }
+    public bool[,] getOrder()
+    {
+        return _order;
+    }
+
+    public int[] getDensity()
+    {
+        return _density;
+    }
+
+    public override string ToString()
+    {
+        string res = "";
+        res += "ORDER:   \n" + tools.DeepToString(ref _order) + "DENSITY:   " + tools.DeepToString(ref _density) + "EVAL:   " + Eval();
+        return res;
     }
 }
+
