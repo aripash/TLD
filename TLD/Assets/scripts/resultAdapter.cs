@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,5 +78,12 @@ public class resultAdapter : MonoBehaviour
 
         return _percent;
     }
-
+    public void end()
+    {
+        StopAllCoroutines();
+    }
+    public void schedule(Junction res, float totalTime)
+    {
+        StartCoroutine(lights(res, totalTime));
+    }
 }

@@ -24,6 +24,7 @@ public class constraint : MonoBehaviour
         if (time > 1&&!flag)
         {
             algo.GetComponent<dataAdapter>().constraintList = cons;
+            tools.cons = cons;
             flag = true;
         }
 

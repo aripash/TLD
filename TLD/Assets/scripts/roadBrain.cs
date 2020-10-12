@@ -97,5 +97,6 @@ public class roadBrain : MonoBehaviour
 
 
         algo.GetComponent<dataAdapter>().changeRoad(int.Parse(gameObject.name), 60/secondsPerCar);
+        StartCoroutine( algo.GetComponent<dataAdapter>().restart());
     }
 }

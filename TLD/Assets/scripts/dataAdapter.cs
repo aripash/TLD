@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class dataAdapter : MonoBehaviour
 {
-    public List<string> constraintList = new List<string>();
+    public List<string> constraintList;
     [SerializeField] int numOfRoads = 0;
     static List<float> density = new List<float>();
-    [SerializeField] GameObject resultAdapter = null;
+    static GameObject resultAdapter = null;
     int cycleTime = 300;
     [SerializeField] int timeForCycle = 20;
-    Coroutine corutine;
     //in case someone changed the cycleTime before the program started
     private void Start()
     {
+        tools.numOfRoads = numOfRoads;
+        resultAdapter = GameObject.Find("TrafficlightList");
         //density = new List<float>();
         Constraints.cons_mat = null;
         drive.serial = 0;
@@ -28,6 +29,8 @@ public class dataAdapter : MonoBehaviour
     public IEnumerator restart()
     {
         Debug.Log("restarting");
+        constraintList = tools.cons;
+        numOfRoads = tools.numOfRoads;
         yield return new WaitForSeconds(2);
         List<int> _int_den = new List<int>();
         foreach (float f in density)
@@ -47,9 +50,7 @@ public class dataAdapter : MonoBehaviour
     {
         //Debug.Log(tools.DeepToString(ref density));
         newRoad(name, cpm);
-        if (corutine != null)
-            StopCoroutine(corutine);
-        StartCoroutine(restart());
+        resultAdapter.GetComponent<resultAdapter>().end();
     }
     /// <summary>
     /// adds new road
@@ -86,7 +87,8 @@ public class dataAdapter : MonoBehaviour
         Debug.Log(_result);
         Debug.Log(tools.DeepToString(ref constraintList));
         Debug.Log(_result.Eval());
-        corutine = StartCoroutine(resultAdapter.GetComponent<resultAdapter>().lights(_result, cycleTime));//send schedule instead
+        //StartCoroutine(resultAdapter.GetComponent<resultAdapter>().lights(_result, cycleTime));//send schedule instead
+        resultAdapter.GetComponent<resultAdapter>().schedule(_result, cycleTime);
     }
     public void changeCycleTimer(string text) 
     {

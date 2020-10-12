@@ -5,6 +5,8 @@ using UnityEngine;
 
 class tools
 {
+    public static int numOfRoads;
+    public static List<string> cons;
     public static string DeepToString<T>(ref T[] arr)
     {
         string res = "";
