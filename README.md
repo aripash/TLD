@@ -15,7 +15,7 @@ Therefore it is very important that the roads will allow efficient traffic flow,
 We aim for the 'TLD' traffic light algorithm we are developing to be a solution to efficient real-time traffic light distribution. The system today is largely built from statistics methods and not sufficiently affected by real-time information, so on the road many drivers lose precious time that can be dragged into hours of wasted time.
 
 Our algorithm should be efficient enough to handle information and calculation in real time.
-![Main idea](/images/TLD.mp4)
+![Main idea](/images/TLD.gif)
 
 # Unity Part - Traffic Simulation
 
