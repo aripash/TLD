@@ -573,7 +573,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Select a map from 1-
+  m_Text: Select a map from 1-2
 --- !u!222 &811484421
 CanvasRenderer:
   m_ObjectHideFlags: 0

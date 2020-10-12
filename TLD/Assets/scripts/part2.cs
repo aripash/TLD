@@ -14,6 +14,7 @@ public class part2 : MonoBehaviour
     private void Start()
     {
         cycleTime = timeForCycle * numOfRoads;
+        StartCoroutine(restart());
 
     }
     /// <summary>

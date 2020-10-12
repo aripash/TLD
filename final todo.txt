@@ -38,7 +38,7 @@ after each cycle to resend new densities.[x](we use time to determain a cycle)
 
 cycle param can be changed by the user.[v]
 
-draw more maps.(T and X junctions)[]
+draw more maps.(T junction)[v]
 
 number of changes in one cycle. [v]
 
@@ -58,7 +58,10 @@ make a main menu[v]
 
 part2 change from update to coroutine and add to part 4[v]
 
-change the map to not have right turns[]
+change the map to not have right turns[v]
 
-add genetics to the algo[]
+add genetics to the algo[x](not enough time)
 
+the algo needs to give better results[]
+
+a lot of testing[]
