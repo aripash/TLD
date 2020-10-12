@@ -66,7 +66,7 @@ public class dataAdapter : MonoBehaviour
     /// each column represents number of element to open. </returns>
     public void AlgoRun(int _nor, List<int> _density)
     {
-        cycleTime = numOfRoads * 20;
+        cycleTime = numOfRoads * timeForCycle;
         Constraints _cons = new Constraints(_nor);
         foreach (string s in constraintList)
         {

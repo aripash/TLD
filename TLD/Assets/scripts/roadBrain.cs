@@ -92,7 +92,7 @@ public class roadBrain : MonoBehaviour
     public void newCPM(string cpm)
     {
         int cpmt = int.Parse(cpm);
-        secondsPerCar =cpmt;
+        secondsPerCar =60/cpmt;
         if (secondsPerCar < 1) secondsPerCar = 1;
 
         algo.GetComponent<dataAdapter>().changeRoad(int.Parse(gameObject.name), 60/secondsPerCar);
