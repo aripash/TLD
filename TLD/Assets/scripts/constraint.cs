@@ -18,7 +18,7 @@ public class constraint : MonoBehaviour
         time += Time.deltaTime;
         if (time > 1&&!flag)
         {
-            algo.GetComponent<part2>().constraintList = cons;
+            algo.GetComponent<dataAdapter>().constraintList = cons;
             flag = true;
         }
 

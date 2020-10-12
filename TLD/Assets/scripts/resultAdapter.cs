@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class part4 : MonoBehaviour
+public class resultAdapter : MonoBehaviour
 {
     /// <summary>
     /// we open and close the traffic lights according to the results we got from the algorithm
@@ -36,7 +36,7 @@ public class part4 : MonoBehaviour
             yield return new WaitForSeconds(switchPercent[i] * totalTime);
 
         }
-        GameObject.Find("Algo").GetComponent<part2>().restart();
+        GameObject.Find("Algo").GetComponent<dataAdapter>().restart();
     }
 
     /// <summary>
