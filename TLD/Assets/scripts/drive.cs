@@ -32,7 +32,7 @@ public class drive : MonoBehaviour
                 if (hit.collider.tag == "car") {
                     rb.velocity = Vector3.zero;
                     Vector3 currentPos = gameObject.transform.position;
-                    if (Mathf.Abs(gps[currentpoint-1].x - currentPos.x) < 0.1f && Mathf.Abs(gps[currentpoint-1].z - currentPos.z) < 0.1f)
+                    if (Mathf.Abs(gps[currentpoint-1].x - currentPos.x) < 1f && Mathf.Abs(gps[currentpoint-1].z - currentPos.z) < 1f)
                     {
                         parent.GetComponent<roadBrain>().stop = true;
                     }
@@ -47,7 +47,7 @@ public class drive : MonoBehaviour
 
             Vector3 currentGPS = gameObject.transform.position;
             //check if we got to the next point
-            if (Mathf.Abs(gps[currentpoint].x - currentGPS.x) < 0.1f && Mathf.Abs(gps[currentpoint].z - currentGPS.z) < 0.1f)
+            if (Mathf.Abs(gps[currentpoint].x - currentGPS.x) < 0.15f && Mathf.Abs(gps[currentpoint].z - currentGPS.z) < 0.15f)
             {
                 gameObject.transform.position = gps[currentpoint];
                 currentpoint++;
