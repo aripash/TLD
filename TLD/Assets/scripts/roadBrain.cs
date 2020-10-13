@@ -96,6 +96,5 @@ public class roadBrain : MonoBehaviour
         else secondsPerCar =60/cpmt;
         //after changing the road's density we need to restart the algo
         algo.GetComponent<dataAdapter>().changeRoad(int.Parse(gameObject.name), 60/secondsPerCar);
-        StartCoroutine( algo.GetComponent<dataAdapter>().restart());
     }
 }

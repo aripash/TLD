@@ -41,7 +41,7 @@ public class dataAdapter : MonoBehaviour
 
 
     /// <summary>
-    /// changes road's density and stop the current cycle
+    /// changes road's density and restarts the cycle
     /// </summary>
     /// <param name="name"> Road name </param>
     /// <param name="cpm"> Road's density (cars per minute) </param>
@@ -50,6 +50,7 @@ public class dataAdapter : MonoBehaviour
         //Debug.Log(tools.DeepToString(ref density));
         newRoad(name, cpm);
         resultAdapter.GetComponent<resultAdapter>().end();
+        resultAdapter.GetComponent<resultAdapter>().restart();
     }
     /// <summary>
     /// adds new road
@@ -91,12 +92,14 @@ public class dataAdapter : MonoBehaviour
         resultAdapter.GetComponent<resultAdapter>().schedule(_result, cycleTime);
     }
     /// <summary>
-    /// changes the time of each segment and the total time for the cycle
+    /// changes the time of each segment and the total time for the cycle and restarts it
     /// </summary>
     /// <param name="text"></param>
     public void changeCycleTimer(string text) 
     {
         timeForCycle = int.Parse(text);
         cycleTime = timeForCycle * numOfRoads;
+        resultAdapter.GetComponent<resultAdapter>().end();
+        resultAdapter.GetComponent<resultAdapter>().restart();
     }
 }

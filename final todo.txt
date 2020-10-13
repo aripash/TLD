@@ -64,8 +64,8 @@ add genetics to the algo[x](not enough time)
 
 a lot of testing[v]
 
-pptx[]
+pptx[v]
 
 cycle change->restart[]
 
-more commants[]
+more commants[v]

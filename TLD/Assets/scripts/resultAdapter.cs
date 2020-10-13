@@ -86,12 +86,19 @@ public class resultAdapter : MonoBehaviour
         StopAllCoroutines();
     }
     /// <summary>
-    /// starts the cycle
+    /// applies the cycle on the trafficlights
     /// </summary>
     /// <param name="res">the resulting junction from running the algo</param>
     /// <param name="totalTime">the total time the cycle runs</param>
     public void schedule(Junction res, float totalTime)
     {
         StartCoroutine(lights(res, totalTime));
+    }
+    /// <summary>
+    /// restarts the cycle
+    /// </summary>
+    public void restart()
+    {
+        StartCoroutine(GameObject.Find("Algo").GetComponent<dataAdapter>().restart());
     }
 }
