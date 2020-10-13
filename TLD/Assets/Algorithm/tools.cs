@@ -40,5 +40,36 @@ class tools
         }
         return res;
     }
+    /// <summary>
+    /// swap 2 columns in matrix [x,i] <=> [x,j]
+    /// </summary>
+    /// <typeparam name="T"> Type </typeparam>
+    /// <param name="arr"> Matrix </param>
+    /// <param name="a"> First column index </param>
+    /// <param name="b"> Second column index </param>
+    public static void SwapColumns<T>(ref T[,] arr, int a, int b)
+    {
+        T temp;
+        for(int i = 0; i < arr.GetLength(0); i++)
+        {
+            temp = arr[i, a];
+            arr[i, a] = arr[i, b];
+            arr[i, b] = temp;
+        }
+    }
+    /// <summary>
+    /// swap in array arr[i] <=> arr[j]
+    /// </summary>
+    /// <typeparam name="T"> Type </typeparam>
+    /// <param name="arr"> Array </param>
+    /// <param name="a"> First index </param>
+    /// <param name="b"> Second index </param>
+    public static void SwapArr<T>(ref T[] arr, int a, int b)
+    {
+        T temp;
+        temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
 }
 

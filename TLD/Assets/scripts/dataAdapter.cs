@@ -15,7 +15,6 @@ public class dataAdapter : MonoBehaviour
     {
         tools.numOfRoads = numOfRoads;
         resultAdapter = GameObject.Find("TrafficlightList");
-        //density = new List<float>();
         Constraints.cons_mat = null;
         drive.serial = 0;
         cycleTime = timeForCycle * numOfRoads;
@@ -27,7 +26,6 @@ public class dataAdapter : MonoBehaviour
     /// </summary>
     public IEnumerator restart()
     {
-        Debug.Log("restarting");
         constraintList = tools.cons;
         numOfRoads = tools.numOfRoads;
         yield return new WaitForSeconds(2);
@@ -47,7 +45,6 @@ public class dataAdapter : MonoBehaviour
     /// <param name="cpm"> Road's density (cars per minute) </param>
     public void changeRoad(int name, float cpm) 
     {
-        //Debug.Log(tools.DeepToString(ref density));
         newRoad(name, cpm);
         resultAdapter.GetComponent<resultAdapter>().end();
         resultAdapter.GetComponent<resultAdapter>().restart();
@@ -86,9 +83,6 @@ public class dataAdapter : MonoBehaviour
         Junction _jn = new Junction(_nor, _density.ToArray());
         Junction _result = SimulatedAnnealing.Compute(_jn, 20, 0.00001f,3500);
         Debug.Log(_result);
-        Debug.Log(tools.DeepToString(ref constraintList));
-        Debug.Log(_result.Eval());
-        //StartCoroutine(resultAdapter.GetComponent<resultAdapter>().lights(_result, cycleTime));//send schedule instead
         resultAdapter.GetComponent<resultAdapter>().schedule(_result, cycleTime);
     }
     /// <summary>

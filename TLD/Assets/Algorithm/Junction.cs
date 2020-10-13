@@ -135,6 +135,16 @@ public class Junction
         return _order;
     }
     /// <summary>
+    /// Manualy set order and density
+    /// </summary>
+    /// <param name="ord"> new Order </param>
+    /// <param name="den"> new Density </param>
+    public void setNewOrderDen(bool[,] ord, int[] den)
+    {
+        _order = ord;
+        _density = den;
+    }
+    /// <summary>
     /// Returns _density
     /// </summary>
     /// <returns> int[] _density </returns>

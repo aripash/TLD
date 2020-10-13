@@ -17,7 +17,6 @@ public class resultAdapter : MonoBehaviour
         int switches = switchPercent.Length;
         for(int i = 0; i < switches; i++)//iterate on each switch
         {
-            //Debug.Log("switched");
             //close all roads first then wait a second and then open the roads
             for (int j = 0; j < gameObject.transform.childCount; j++)
             {
@@ -33,7 +32,6 @@ public class resultAdapter : MonoBehaviour
             }
 
             //wait for the switch timer(switchPercent) to run out before the next switch
-            //Debug.Log("percent " + switchPercent[i] + "  total time " + totalTime);
             yield return new WaitForSeconds(switchPercent[i] * totalTime);
 
         }
@@ -62,7 +60,6 @@ public class resultAdapter : MonoBehaviour
                 if (_order[j, i] == true)
                 {
                     _den_sum[i] += _jn.getDensity()[j];
-                    //Debug.Log(_jn.getDensity()[j]);
                 }
             }
         }
@@ -100,5 +97,34 @@ public class resultAdapter : MonoBehaviour
     public void restart()
     {
         StartCoroutine(GameObject.Find("Algo").GetComponent<dataAdapter>().restart());
+    }
+
+    /// <summary>
+    /// sort by density - Higher dense segment will go first
+    /// </summary>
+    /// <param name="_jn"></param>
+    /// <param name="per"></param>
+    public void sortByDensity(Junction _jn, float[] per)
+    {
+        float maxPer = 0;
+        int index = 0;
+        bool[,] order = _jn.getOrder();
+        int[] den = _jn.getDensity();
+        for(int i = 0; i < per.Length; i++)
+        {
+            for (int j = i; j < per.Length; j++)
+            {
+                if(maxPer < per[j])
+                {
+                    maxPer = per[j];
+                    index = j;
+                }
+            }
+            tools.SwapColumns(ref order, i, index);
+            tools.SwapArr(ref den, i, index);
+            maxPer = 0;
+            index = 0;
+        }
+        _jn.setNewOrderDen(order, den);
     }
 }
