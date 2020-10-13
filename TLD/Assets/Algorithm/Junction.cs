@@ -11,17 +11,16 @@ using UnityEngine;
 /// </summary>
 public class Junction
 {
-    bool[,] _order;
-    int[] _density;
-    //static int CYCLE_SIZE = 4; //max cycle size
+    bool[,] _order; // green lights order
+    int[] _density; // density for each lane
     static Constraints cons;
 
     public Junction(int how_many_lanes, int[] _den)
     {
-        //System.Random rand = new System.Random();
         _order = new bool[how_many_lanes, how_many_lanes];
         _density = _den;
         cons = new Constraints(how_many_lanes);
+        // make decent starting point
         for (int i = 0; i < how_many_lanes; i++)
         {
             _order[i, i] = true;
@@ -35,6 +34,10 @@ public class Junction
         }
     }
 
+    /// <summary>
+    /// Clone initiator
+    /// </summary>
+    /// <param name="original"> Original Junction </param>
     public Junction(Junction original)
     {
         this._order = (bool[,])original._order.Clone();
@@ -98,14 +101,9 @@ public class Junction
                         {
                             tempCounter++;
                             tempDen += _density[j];
-                            /* _denClone[j] = _density[j];*/
                         }
-                        /*    else
-                            {
-                                _denClone[j] *= 2;
-                            }*/
                     }
-                    result += (tempCounter * tempCounter) + (tempDen * tempDen);
+                    result += tempCounter + (tempDen * tempDen);
                     tempCounter = 0;
                     tempDen = 0;
                 }
@@ -128,17 +126,31 @@ public class Junction
         temp._order[tempRandRow, tempRandCol] = !temp._order[tempRandRow, tempRandCol];
         return temp;
     }
-
+    /// <summary>
+    /// Returns _Order
+    /// </summary>
+    /// <returns> bool[,] _Order </returns>
     public bool[,] getOrder()
     {
         return _order;
     }
-
+    /// <summary>
+    /// Returns _density
+    /// </summary>
+    /// <returns> int[] _density </returns>
     public int[] getDensity()
     {
         return _density;
     }
 
+    /// <summary>
+    /// To string
+    /// </summary>
+    /// <returns> 
+    /// Order:
+    /// Density:
+    /// Eval:
+    /// </returns>
     public override string ToString()
     {
         string res = "";

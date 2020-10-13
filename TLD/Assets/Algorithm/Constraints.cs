@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Text;
 using UnityEngine;
 
-
+/// <summary>
+/// This Class represents Constraints for simulated anealing algorithm
+/// </summary>
 class Constraints
 {
     //Neighbours Matrix for Constraints
@@ -19,11 +21,6 @@ class Constraints
             cons_mat = new bool[size, size];
             LENGTH = size;
         }
-  /*      if(LENGTH!=size)
-        {
-            cons_mat = new bool[size, size];
-            LENGTH = size;
-        }*/
     }
     
     public Constraints()

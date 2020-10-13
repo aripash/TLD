@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// Class for debugging tools and storage
+/// </summary>
 class tools
 {
     public static int numOfRoads;
@@ -30,6 +33,7 @@ class tools
         string res = "";
         for (int i = 0; i < arr.GetLength(0); i++)
         {
+            res += i + ": ";
             for (int j = 0; j < arr.GetLength(1); j++)
                 res += " " + arr[i, j];
             res += "\n";

@@ -4,10 +4,15 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
+/// <summary>
+/// Algorithm Class-Method
+/// </summary>
     class SimulatedAnnealing
     {
         /// <summary>
-        /// 
+        /// Simulated Annealing algorithm : begin with start node, choose random child, calculate childs evaluation
+        /// if evaluation better than before, go with child, else check if child passes acceptor function.
+        /// algorithm does random walk to maximum
         /// </summary>
         /// <param name="start"> starting junction - can reduce proccess </param>
         /// <param name="t"> starting temprature </param>
