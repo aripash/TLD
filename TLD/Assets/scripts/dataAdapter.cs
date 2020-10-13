@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class dataAdapter : MonoBehaviour
 {
-    public List<string> constraintList;
-    [SerializeField] int numOfRoads = 0;
-    static List<float> density = new List<float>();
-    static GameObject resultAdapter = null;
-    int cycleTime = 300;
-    [SerializeField] int timeForCycle = 20;
+    public List<string> constraintList;//list with the constraints
+    [SerializeField] int numOfRoads = 0;//total number of roads
+    static List<float> density = new List<float>();//list with the densities of each road
+    static GameObject resultAdapter = null;//object with the result adaptor script
+    int cycleTime = 300;//total time for a cycle
+    [SerializeField] int timeForCycle = 20;//time for each segment
     //in case someone changed the cycleTime before the program started
     private void Start()
     {
@@ -23,8 +23,7 @@ public class dataAdapter : MonoBehaviour
 
     }
     /// <summary>
-    /// after a second we begin to calculate the algorithm(we wait enough time for the other parts to send all of thier relevant info)
-    /// and after that we calculate the algorithm again every cycleTime seconds.
+    /// after 2 seconds we begin to calculate the algorithm(we wait enough time for the other parts to send all of thier relevant info)
     /// </summary>
     public IEnumerator restart()
     {
@@ -42,7 +41,7 @@ public class dataAdapter : MonoBehaviour
 
 
     /// <summary>
-    /// changes road's density
+    /// changes road's density and stop the current cycle
     /// </summary>
     /// <param name="name"> Road name </param>
     /// <param name="cpm"> Road's density (cars per minute) </param>
@@ -68,6 +67,7 @@ public class dataAdapter : MonoBehaviour
 
     /// <summary>
     /// Compute traffic lights cycle's order, MUST HAVE CONSTRAINTS IN PLACE!
+    /// sends to the result adapter the results
     /// </summary>
     /// <param name="_nor"> Number of elements (roads or traffic lights) </param>
     /// <param name="_density"> Density of each element as list : (road number 1, density(0)),.... </param>
@@ -90,6 +90,10 @@ public class dataAdapter : MonoBehaviour
         //StartCoroutine(resultAdapter.GetComponent<resultAdapter>().lights(_result, cycleTime));//send schedule instead
         resultAdapter.GetComponent<resultAdapter>().schedule(_result, cycleTime);
     }
+    /// <summary>
+    /// changes the time of each segment and the total time for the cycle
+    /// </summary>
+    /// <param name="text"></param>
     public void changeCycleTimer(string text) 
     {
         timeForCycle = int.Parse(text);

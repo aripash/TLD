@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class drive : MonoBehaviour
 {
-    [SerializeField] float speed = 1;
-    public List<Vector3> gps;
-    public int currentpoint = 0;
-    public int maxpoints = 2;
+    [SerializeField] float speed = 1;//the speed of the car
+    public List<Vector3> gps;//list of points the car needs to pass
+    public int currentpoint = 0;//the current point the car is at
+    public int maxpoints = 2;//number of maximum points the car needs to pass
     Rigidbody rb;
-    [SerializeField]float safeDistance = 1;
-    public static int serial=0;
-    public GameObject parent;
+    [SerializeField]float safeDistance = 1;//the max distance an obstcle can be from the car
+    public static int serial=0;//serial number
+    public GameObject parent;//the road that spawned the car
 
     /// <summary>
     /// checks each frame what the car needs to do: stop, continue driving, change direction or finish.
@@ -26,7 +26,7 @@ public class drive : MonoBehaviour
             RaycastHit hit;
             Vector3 raycastpos = gameObject.transform.position;
             Vector3 dir = (gps[currentpoint] - gps[currentpoint - 1]).normalized;
-            //cast a ray from raycastpos in the direction of movement at a safeDistance distance only on objects from the 8th layer and save to hit
+            //cast a ray from raycastpos in the direction of movement at a safeDistance distance and save to hit
             if (Physics.Raycast(raycastpos, dir, out hit, safeDistance))
             {
                 if (hit.collider.tag == "car") {
@@ -38,7 +38,7 @@ public class drive : MonoBehaviour
                     }
                 }
             }
-            else
+            else//if there is no hit continue as normal
             {
                 rb.velocity = dir * speed;
                 transform.LookAt(gps[currentpoint]);

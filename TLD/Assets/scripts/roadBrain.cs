@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class roadBrain : MonoBehaviour
 {
-    constraint constraints;
+    constraint constraints;//constraint object that contains the constraint list
     //static int serialnumber=0;
-    [SerializeField] float secondsPerCar=9999;
-    [SerializeField] GameObject startRoad=null;
-    [SerializeField] GameObject middleRoad=null;
-    [SerializeField] GameObject endRoad=null;
-    [SerializeField] GameObject car=null;
-    float secondNumber = 0;
-    List<Vector3> list;
-    int mid = 0;
-    public bool stop = false;
-    [SerializeField] InputField inpf = null;//original
+    [SerializeField] float secondsPerCar=9999;//how much time needs to pass before we can spawn a car
+    [SerializeField] GameObject startRoad=null;//first point
+    [SerializeField] GameObject middleRoad=null;//second point
+    [SerializeField] GameObject endRoad=null;//last point
+    [SerializeField] GameObject car=null;//prefab of the car that the road spawns
+    float secondNumber = 0;//how much time has passed
+    List<Vector3> list;//list of all the points
+    int mid = 0;//indicates if we have a middle or not
+    public bool stop = false;//flag to stop spawning cars
+    [SerializeField] InputField inpf = null;//original inputfield
     private InputField iF;//copy for a specific road
-    [SerializeField] GameObject algo = null;
+    [SerializeField] GameObject algo = null;//gameobject that holds the dataAdaptor
     
     void Start()
     {
@@ -94,8 +94,7 @@ public class roadBrain : MonoBehaviour
         if (cpmt < 1|| cpmt > 60)
             secondsPerCar = 1;
         else secondsPerCar =60/cpmt;
-
-
+        //after changing the road's density we need to restart the algo
         algo.GetComponent<dataAdapter>().changeRoad(int.Parse(gameObject.name), 60/secondsPerCar);
         StartCoroutine( algo.GetComponent<dataAdapter>().restart());
     }

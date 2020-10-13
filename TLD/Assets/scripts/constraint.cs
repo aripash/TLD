@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class constraint : MonoBehaviour
 {
-    public static List<string> cons = null;
-    float time = 0;
-    [SerializeField] GameObject algo = null;
-    bool flag = false;
+    public static List<string> cons = null;//list with the constraints
+    float time = 0;//how much time has passed
+    [SerializeField] GameObject algo = null;//object that holds the data adaptor
+    bool flag = false;//flag to stop sending the list
 
     private void Start()
     {

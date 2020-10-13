@@ -78,10 +78,18 @@ public class resultAdapter : MonoBehaviour
 
         return _percent;
     }
+    /// <summary>
+    /// stops the cycle
+    /// </summary>
     public void end()
     {
         StopAllCoroutines();
     }
+    /// <summary>
+    /// starts the cycle
+    /// </summary>
+    /// <param name="res">the resulting junction from running the algo</param>
+    /// <param name="totalTime">the total time the cycle runs</param>
     public void schedule(Junction res, float totalTime)
     {
         StartCoroutine(lights(res, totalTime));
